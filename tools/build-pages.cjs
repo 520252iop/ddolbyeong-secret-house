@@ -13,11 +13,11 @@ const versions=new Map([...data].map(([f,b])=>[f,hash(b)]));
 const assetRef=(ref,from)=>{if(/^(?:data:|https?:|#)/.test(ref))return ref;assert(!ref.startsWith('/'),'Root-relative path '+ref);const file=path.posix.normalize(path.posix.join(path.posix.dirname(from),ref.split(/[?#]/)[0]));assert(files.includes(file),'Missing reference '+file);return ref.split('?')[0]+'?v='+versions.get(file);};
 // Preserve media bytes and filenames; only generated references and public text change.
 data.set('memory-album-data.js',Buffer.from("'use strict';\nconst MEMORY_PHOTOS="+JSON.stringify(photos.map(p=>({...p,src:assetRef(p.src,'memory-album-data.js'),thumb:assetRef(p.thumb,'memory-album-data.js')})))+';\n'));
-data.set('cosmic-mailbox-config.js',Buffer.from("'use strict';\nconst COSMIC_MAILBOX_CONFIG=Object.freeze({apiBase:'',turnstileSiteKey:'',sharedVerified:false});\n"));
+data.set('cosmic-mailbox-config.js',Buffer.from("'use strict';\nconst COSMIC_MAILBOX_CONFIG=Object.freeze({apiBase:'https://ohzpjoadqncelapkrsfs.supabase.co/functions/v1/cosmic-mailbox',turnstileSiteKey:'0x4AAAAAAFqwMj2f9WtZlngU',sharedVerified:true});\n"));
 for(const [file,buffer]of data){if(!/\.(js|css)$/.test(file)||file==='memory-album-data.js')continue;let text=buffer.toString();if(file.endsWith('.css'))text=text.replace(/url\((['"]?)([^)'"\s]+)\1\)/g,(m,q,ref)=>'url('+q+assetRef(ref,file)+q+')');else text=text.replace(/^\s*\/\/.*$/gm,'').replace(/(['"])(assets\/[^'"\s?]+\.(?:wav|mp3|jpg|jpeg|png|svg|webp|ttf|woff2?|js))\1/g,(m,q,ref)=>q+assetRef(ref,file)+q);data.set(file,Buffer.from(text));}
 for(const [f,b]of data)versions.set(f,hash(b));
 let html=data.get('index.html').toString();
-html=html.replace(/<section class="cosmic-mail-panel"[\s\S]*?<\/section>/,m=>m.replace(/<p>[\s\S]*?<\/p>/,'<p>共享来信服务迁移中，暂不可用。原有来信保留。</p>').replace(/<button\b[^>]*id="openCosmicMailbox"[^>]*>[\s\S]*?<\/button>/,'<button type="button" id="openCosmicMailbox" disabled>✉ 来信箱 · 迁移中</button>'));
+// Preserve the existing mailbox panel and interaction; use the new server endpoint.
 html=html.replace(/((?:src|href)=")([^"]+)(")/g,(m,a,ref,z)=>a+assetRef(ref,'index.html')+z);
 const release=hash(Buffer.concat([...data.values()]));
 html=html.replace('</body>',`<script src="pages-cache.js?v=${release}"></script></body>`);
