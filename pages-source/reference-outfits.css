@@ -1,0 +1,26 @@
+/* Three reference-inspired garments; preserve the same body and wing skeleton. */
+svg[data-look=berry-zip] .buttons,
+svg[data-look=berry-zip] .hem-stitch,
+svg[data-look=berry-zip] .uniform-trim,
+svg[data-look=berry-zip] .pajama-detail,
+svg[data-look=midnight-jersey] .buttons,
+svg[data-look=midnight-jersey] .hem-stitch,
+svg[data-look=midnight-jersey] .uniform-trim,
+svg[data-look=midnight-jersey] .pajama-detail,
+svg[data-look=lemon-flight] .buttons,
+svg[data-look=lemon-flight] .hem-stitch,
+svg[data-look=lemon-flight] .uniform-trim,
+svg[data-look=lemon-flight] .pajama-detail{display:none}
+svg[data-look=berry-zip] .suit{fill:#ae596b;stroke:#766365}
+svg[data-look=midnight-jersey] .suit{fill:#42434a;stroke:#70686a}
+svg[data-look=lemon-flight] .suit{fill:#e9d980;stroke:#8c826a}
+.reference-outfit{pointer-events:none}
+
+/* Costume layers keep the original face, wings and permanent tall head. */
+svg:is([data-look=maid],[data-look=piggy]) :is(.buttons,.hem-stitch,.uniform-trim,.pajama-detail){display:none}
+svg[data-look=maid] .suit{fill:#45424e;stroke:#75656d}
+svg[data-look=piggy] .suit{fill:#edbec8;stroke:#a67b87}
+.maid-lace,.piggy-ears{pointer-events:none}
+
+svg[data-look=i-love-sh] :is(.buttons,.hem-stitch,.uniform-trim,.pajama-detail){display:none}
+svg[data-look=i-love-sh] .suit{fill:#fff9ef;stroke:#998b80}

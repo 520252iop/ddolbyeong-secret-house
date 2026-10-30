@@ -1,0 +1,44 @@
+/* Only the right-hand collection corner; original nodes retain their events. */
+#room .right-keepsake-board{position:absolute;right:calc(7% + 157px);top:80px;width:111px;height:128px;z-index:1;pointer-events:none;border:1px solid #ccb8a5;border-radius:5px 4px 6px 3px;background-color:#edddc9;background-image:repeating-linear-gradient(3deg,transparent 0 6px,#fff8e51f 7px 8px);box-shadow:3px 2px 0 #dbc4a9,4px 5px 6px #92775e13}
+.right-keepsake-board:before{content:'';position:absolute;left:9px;right:9px;top:10px;height:1px;background:#c4b09b;box-shadow:0 66px 0 #c4b09b}
+.right-keepsake-board:after{content:'';position:absolute;left:7px;top:6px;width:3px;height:8px;background:#d0b99e;border-radius:1px;box-shadow:85px 0 0 #d0b99e,0 66px 0 #d0b99e,85px 66px 0 #d0b99e}
+#room .interior-player{right:calc(7% + 185px);top:98px;width:56px;height:48px;bottom:auto;transform:rotate(-2deg)}
+#room .interior-player:before{content:'';position:absolute;left:23%;top:-5px;width:52%;height:9px;background:#f0dfae94;transform:rotate(4deg);pointer-events:none}
+#room .room-memory-camera{right:calc(7% + 166px);top:158px;bottom:auto;width:44px;height:44px;padding:3px;transform:rotate(2deg)}
+#room .room-memory-camera:before{content:'';position:absolute;left:50%;top:-13px;width:1px;height:17px;background:#c5b29d;pointer-events:none}
+#room .right-storage-cabinet{position:absolute;right:12%;top:296px;width:160px;height:84px;border:1.5px solid #ccb397;border-radius:3px 4px 6px 5px;background:linear-gradient(90deg,#ebd9bf 0 6px,#f3e7d4 7px calc(100% - 7px),#d9bea0 calc(100% - 6px));box-shadow:5px 2px 0 #dbc2a6,6px 8px 8px #97775b13;z-index:1;pointer-events:none}
+.right-storage-cabinet:before{content:'';position:absolute;left:-5px;right:-5px;top:-4px;height:8px;border:1px solid #cbb296;border-radius:2px;background:linear-gradient(#fbefdc 0 40%,#dbc0a0 41%);box-shadow:0 65px 0 -1px #e2c9ac,0 68px 0 -1px #cfb091}
+.right-storage-cabinet:after{content:'';position:absolute;left:9px;right:9px;bottom:-12px;height:11px;border-left:7px solid #cdb293;border-right:7px solid #cdb293;filter:drop-shadow(1px 2px 1px #a88b6f17)}
+#room .memory-collection{right:calc(12% + 14px);top:224px;width:126px;height:81px;transform:none}
+#room .star-plush{right:calc(12% + 83px);top:310px;bottom:auto;width:50px;height:50px;transform:rotate(-2deg)}
+#room .friend-dumbbell{right:calc(12% + 20px);top:320px;bottom:auto;width:44px;height:44px;transform:rotate(1deg)}
+#room .star-plush svg,#room .friend-dumbbell svg{filter:drop-shadow(0 2px 1px #ab927820)}
+@media(min-width:651px) and (max-width:800px){
+ #room .right-keepsake-board{right:7%;top:205px;width:145px;height:60px}
+ .right-keepsake-board:before{top:10px;box-shadow:none}.right-keepsake-board:after{box-shadow:119px 0 0 #d0b99e}
+ #room .interior-player{right:calc(7% + 80px);top:214px;width:50px;height:44px}
+ #room .room-memory-camera{right:calc(7% + 15px);top:216px}
+ #room .right-storage-cabinet{right:14%;top:335px;width:140px;height:69px}
+ #room .right-storage-cabinet:before{box-shadow:0 61px 0 -1px #e2c9ac}
+ #room .memory-collection{right:calc(14% + 10px);top:269px;width:115px;height:74px}
+ #room .star-plush{right:calc(14% + 75px);top:348px;width:46px;height:46px}
+ #room .friend-dumbbell{right:calc(14% + 17px);top:351px}
+}
+@media(max-width:650px){
+ #room .right-keepsake-board{right:4%;top:170px;width:88px;height:153px;box-shadow:2px 2px 0 #dbc4a9,3px 4px 5px #92775e10}
+ .right-keepsake-board:before{left:7px;right:7px;top:54px;box-shadow:0 51px 0 #c4b09b}
+ .right-keepsake-board:after{left:6px;top:50px;box-shadow:70px 0 0 #d0b99e,0 51px 0 #d0b99e,70px 51px 0 #d0b99e}
+ #room .room-friends-photo{right:calc(4% + 14px);top:177px;width:56px;height:44px;transform:rotate(-1deg)}
+ #room .interior-player{right:calc(4% + 27px);top:228px;width:44px;height:44px}
+ #room .room-memory-camera{right:calc(4% + 14px);top:278px;width:44px;height:44px}
+ #room .room-memory-camera:before{top:-6px;height:10px}
+ #room .right-storage-cabinet{right:4%;top:386px;width:104px;height:58px;box-shadow:3px 2px 0 #dbc2a6,4px 5px 6px #97775b10}
+ #room .right-storage-cabinet:before{box-shadow:0 49px 0 -1px #e2c9ac,0 52px 0 -1px #cfb091}
+ #room .right-storage-cabinet:after{bottom:-9px;height:8px;border-left-width:5px;border-right-width:5px}
+ #room .memory-collection{right:calc(4% + 32px);top:338px;width:72px;height:46px}
+ #room .star-plush{right:calc(4% + 55px);top:391px;width:44px;height:44px;transform:rotate(-1deg)}
+ #room .friend-dumbbell{right:calc(4% + 5px);top:391px;width:44px;height:44px;padding:5px}
+ #room .cozy-corner{right:2px;bottom:67px;transform:scale(.6)}
+ #room .cozy-corner .lamp-table{display:none}
+ #room .interior-lamp-hit{right:0;bottom:82px;width:44px;height:46px}
+}

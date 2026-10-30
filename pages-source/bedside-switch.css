@@ -1,0 +1,26 @@
+/* Requested bedside and right-corner corrections only. */
+#room .bedside-cabinet{position:absolute;left:calc(5% + 250px);bottom:58px;width:60px;height:77px;z-index:1;border:1.5px solid #c8ae92;border-radius:4px 4px 6px 5px;background:linear-gradient(90deg,#ead4b7 0 5px,#f3e5cf 6px calc(100% - 5px),#d8bc99 calc(100% - 4px));box-shadow:4px 2px 0 #dbc2a3,5px 6px 6px #a48a7017;pointer-events:none}
+.bedside-cabinet:before{content:'';position:absolute;left:-4px;right:-4px;top:-4px;height:7px;border:1px solid #ccb399;border-radius:2px;background:linear-gradient(#fff1d9 0 45%,#dfc3a1 46%);box-shadow:0 44px 0 -2px #d8bfa2}
+.bedside-cabinet:after{content:'';position:absolute;left:7px;right:7px;bottom:-10px;height:9px;border-left:6px solid #cbb192;border-right:6px solid #cbb192}
+#room .friend-dino{left:calc(5% + 257px);top:auto;bottom:135px;right:auto;width:44px;height:44px}
+#room .room-diary-book{left:calc(5% + 257px);bottom:69px;width:44px;height:44px;padding:7px;transform:rotate(-1deg)}
+#room .friend-dumbbell{left:auto;right:4%;top:auto;bottom:3px;z-index:2;transform:rotate(-3deg)}
+#room #starPlush{z-index:2;display:block;visibility:visible;pointer-events:auto;opacity:1;padding:0;line-height:0;right:calc(12% + 55px)}
+#room #starPlush.being-hugged{opacity:.65}
+#room #starPlush:focus-visible{outline:2px dashed #b3919c;outline-offset:3px;border-radius:12px}
+#room .right-storage-cabinet{pointer-events:none}
+#room .room-wall-switch{position:absolute;right:3%;top:214px;width:44px;height:48px;z-index:2;padding:6px;border:1px solid #d0bfb0;border-radius:5px 6px 4px 5px;background:#fff5e5;box-shadow:2px 2px 0 #ddcbb8,3px 4px 4px #aa927811;touch-action:manipulation}
+.room-wall-switch:before{content:'';position:absolute;inset:10px 12px;border:1px solid #c2b0a5;border-radius:3px;background:linear-gradient(#f9eee0 0 45%,#ddc7b0 46% 52%,#efddc5 53%);box-shadow:0 2px 0 #c9b39c}
+.room-wall-switch[data-night=true]:before{background:linear-gradient(#ddc7b0 0 47%,#f3dfba 48%);box-shadow:inset 0 2px 0 #c9b39c}
+.room-wall-switch:focus-visible{outline:2px dashed #af8e9d;outline-offset:3px}.room-wall-switch:active{translate:0 1px}
+#room .room-wall-switch{transform:scale(.75);transform-origin:center}
+@media(min-width:651px) and (max-width:800px){#room .bedside-cabinet{left:calc(5% + 208px)}#room .friend-dino,#room .room-diary-book{left:calc(5% + 215px)}#room #starPlush{right:calc(14% + 47px)}}
+@media(max-width:650px){
+ #room .bedside-cabinet{left:3%;bottom:10px;width:48px;height:50px}
+ #room .bedside-cabinet:before{box-shadow:none}#room .bedside-cabinet:after{height:6px;bottom:-7px;border-width:5px}
+ #room .friend-dino{left:calc(3% + 2px);bottom:59px}
+ #room .room-diary-book{left:calc(3% + 2px);bottom:10px;padding:9px}
+ #room .friend-dumbbell{left:calc(3% + 56px);right:auto;top:auto;bottom:3px}
+ #room #starPlush{right:calc(4% + 30px)}
+ #room .room-wall-switch{right:calc(5% + 96px);top:82px;width:44px;height:44px}
+}

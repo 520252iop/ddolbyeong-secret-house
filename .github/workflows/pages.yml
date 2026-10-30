@@ -1,0 +1,39 @@
+name: Deploy DDOLBYEONG to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/configure-pages@v5
+      - name: Build public static runtime
+        run: node tools/build-pages.cjs
+      - name: Verify paths, save compatibility and public files
+        run: node tools/check-pages.cjs
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist/github-pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy existing Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

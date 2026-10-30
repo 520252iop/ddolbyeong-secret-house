@@ -1,0 +1,4 @@
+'use strict';
+function syncWallSwitch(){const night=resolvedRoomPeriod()==='night';$('roomWallSwitch').setAttribute('aria-pressed',String(night));$('roomWallSwitch').setAttribute('aria-label','小屋墙壁开关：当前'+(night?'夜晚，点击切换白天':'白天或傍晚，点击切换夜晚'));$('roomWallSwitch').dataset.night=String(night);}
+function toggleWallSwitch(){if(document.hidden||busy||drag||roomHasDialog()||saveReadIssue||state.phase2?.schemaVersion!==PHASE2_SCHEMA_VERSION)return false;const previousMode=state.phase2.roomTimeMode,previousWeather=state.weather;const next=resolvedRoomPeriod()==='night'?'day':'night';if(state.weather==='night')state.weather='sunny';const changed=setRoomTimeMode(next);if(!changed||saveFailed){state.phase2.roomTimeMode=previousMode;state.weather=previousWeather;syncRoomTime();syncWallSwitch();say('开关设置没有保存成功，先保留原来的昼夜。');return false;}syncWallSwitch();return true;}
+$('roomWallSwitch').addEventListener('click',toggleWallSwitch);syncWallSwitch();

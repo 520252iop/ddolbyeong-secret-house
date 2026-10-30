@@ -1,0 +1,29 @@
+@property --time-wall-top{syntax:"<color>";inherits:true;initial-value:#f5ece2}
+@property --time-wall-bottom{syntax:"<color>";inherits:true;initial-value:#ede0d2}
+@property --time-floor-top{syntax:"<color>";inherits:true;initial-value:#f0dfca}
+@property --time-floor-bottom{syntax:"<color>";inherits:true;initial-value:#f6e8d6}
+@property --time-sky-top{syntax:"<color>";inherits:true;initial-value:#cee8ef}
+@property --time-sky-bottom{syntax:"<color>";inherits:true;initial-value:#e9f4ee}
+/* Four soft indoor palettes: no global darkness filter, character colors stay intact. */
+.room[data-room-period]{--time-wall-top:#f5ece2;--time-wall-bottom:#ede0d2;--time-floor-top:#f0dfca;--time-floor-bottom:#f6e8d6;--time-sky-top:#cee8ef;--time-sky-bottom:#e9f4ee;--time-light:.55;--time-lamp:.32;background:linear-gradient(180deg,var(--time-wall-top) 0%,var(--time-wall-bottom) 64.8%,#c5ac96 65%,#e4cdb8 66.7%,var(--time-floor-top) 85%,var(--time-floor-bottom) 100%);transition:--time-wall-top .65s ease,--time-wall-bottom .65s ease,--time-floor-top .65s ease,--time-floor-bottom .65s ease,--time-sky-top .65s ease,--time-sky-bottom .65s ease}
+.room[data-room-period=morning]{--time-wall-top:#f8f1e7;--time-wall-bottom:#efe6da;--time-floor-top:#f1e3cd;--time-floor-bottom:#f8edd8;--time-sky-top:#d3eaf1;--time-sky-bottom:#f9f0d1;--time-light:.7;--time-lamp:.2}
+.room[data-room-period=evening]{--time-wall-top:#f5e6e0;--time-wall-bottom:#eaddd6;--time-floor-top:#efd5bf;--time-floor-bottom:#f5e0ca;--time-sky-top:#e9c5d4;--time-sky-bottom:#f8dcb5;--time-light:.35;--time-lamp:.72}
+.room[data-room-period=night]{--time-wall-top:#e4e1e7;--time-wall-bottom:#ded8df;--time-floor-top:#e2d1c1;--time-floor-bottom:#edddcb;--time-sky-top:#7f88a7;--time-sky-bottom:#b4b3c9;--time-light:.08;--time-lamp:1}
+.room[data-room-period] .window{background:linear-gradient(var(--time-sky-top),var(--time-sky-bottom));transition:background-color .65s ease,box-shadow .65s ease}
+.room[data-room-period] .window .night-stars{display:none}
+.room[data-room-period] .window[data-weather=rainy]{background:linear-gradient(#bfd1df,#dbe3e4)}
+.room[data-room-period=evening] .window[data-weather=rainy]{background:linear-gradient(#cbbfce,#e7d8cf)}
+.room[data-room-period=night] .window[data-weather=rainy]{background:linear-gradient(#8c92aa,#b8bdce)}
+.room[data-room-period] .window[data-weather=night]{background:linear-gradient(#7f88a7,#b4b3c9)}
+.room[data-room-period=night] .window .night-stars,.room[data-room-period] .window[data-weather=night] .night-stars{display:block;color:#fff1c7;animation:room-night-twinkle 8s ease-in-out infinite}
+.room[data-room-period] .window[data-weather=rainy] .night-stars{display:none}
+.room[data-room-period] #skySymbol{color:#d5b66e}.room[data-room-period=night] #skySymbol,.room[data-room-period] .window[data-weather=night] #skySymbol{color:#fff0c4}.room[data-room-period] .window[data-weather=rainy] #skySymbol{color:#f5f1e3}
+.room[data-room-period] .window .cloud{opacity:.9}.room[data-room-period=night] .window .cloud,.room[data-room-period] .window[data-weather=night] .cloud{opacity:.12}
+.room[data-room-period] .window-light{opacity:var(--time-light);transition:opacity .65s ease}.room[data-room-period]:has(.window[data-weather=rainy]) .window-light{opacity:.16}.room[data-room-period]:has(.window[data-weather=night]) .window-light{opacity:.08}
+.room[data-room-period] .lamp-glow{opacity:var(--time-lamp);transition:opacity .65s ease}.room[data-room-period=night] .lamp-shade{background:linear-gradient(90deg,#edc48d,#fff0bd 50%,#e4ba80)}
+/* Sleeping gently warms/dims room surfaces without dimming the pet or changing the selected mode. */
+.room.sleeping[data-room-period]{--time-wall-top:#e6dfe2;--time-wall-bottom:#dfd7d8;--time-floor-top:#e4d4c4;--time-floor-bottom:#ecddcd;--time-light:.06;--time-lamp:.65}
+.room-time-settings{padding:5px 10px;border:1px dashed #c8b6aa;border-radius:12px;background:#f7ecdc;color:#967e79;font:inherit;font-size:10px;white-space:nowrap}.room-time-settings:focus-visible{outline:2px dashed #b28d9c;outline-offset:3px}.game .savebar{align-items:center;gap:8px;flex-wrap:wrap}
+@keyframes room-night-twinkle{0%,100%{opacity:.65}50%{opacity:1}}
+@media(max-width:650px){.room-time-settings{font-size:9px;padding:5px 8px}.game .savebar{row-gap:7px}}
+@media(prefers-reduced-motion:reduce){.room[data-room-period],.room[data-room-period] .window,.room[data-room-period] .window-light,.room[data-room-period] .lamp-glow{transition:none!important}.room[data-room-period] .window .night-stars{animation:none!important;opacity:.85}}

@@ -1,0 +1,10 @@
+/* Small room keepsakes: faint stationery outlines, no changes to character or existing furniture. */
+.room .memory-object{position:absolute;z-index:2;margin:0;padding:0;border:0;border-radius:6px;background:transparent;line-height:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.memory-object svg,.memory-life svg{display:block;width:100%;height:100%;overflow:visible;pointer-events:none}.room .memory-object:focus-visible{outline:2px dashed #b38f9f;outline-offset:3px}.room .memory-object:hover{filter:brightness(1.025)}
+.room .memory-clock{left:8%;bottom:177px;width:65px;height:38px;transform:rotate(-3deg)}
+.room .memory-poster{left:21%;top:144px;width:74px;height:94px;transform:rotate(5deg)}.memory-paper-tape{position:absolute;left:29%;top:-3px;width:31px;height:10px;background:repeating-linear-gradient(95deg,#c9d8c577 0 3px,#e5e4cb77 4px 5px);transform:rotate(-9deg);pointer-events:none}.memory-poster-spark{position:absolute;right:2px;top:25px;color:#c5a66b;opacity:0;font-size:21px;line-height:1;pointer-events:none}.memory-poster.is-twinkling .memory-poster-spark{animation:memory-spark 1.3s ease-out}
+.room .memory-collection{right:22%;top:209px;width:127px;height:84px}.room .memory-life{position:absolute;left:6%;bottom:35px;width:60px;height:30px;z-index:1;pointer-events:none}
+@keyframes memory-spark{0%{opacity:0;transform:translateY(5px) scale(.8)}30%{opacity:.9;transform:translateY(-3px) scale(1)}100%{opacity:0;transform:translateY(-16px) scale(.9)}}
+@media(max-width:800px) and (min-width:651px){.room .memory-collection{right:21%;width:104px;height:69px;top:210px}.room .memory-poster{left:18%;width:65px;height:83px;top:148px}}
+@media(max-width:650px){.room .memory-clock{left:4%;bottom:146px;width:47px;height:30px}.room .memory-poster{left:3%;top:139px;width:49px;height:65px}.room .memory-collection{right:6%;top:139px;width:74px;height:49px}.room .memory-life{display:none}.memory-paper-tape{width:23px;height:8px}.memory-poster-spark{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.memory-poster.is-twinkling .memory-poster-spark{animation:none;opacity:.8}}

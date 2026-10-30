@@ -1,0 +1,88 @@
+/* Room-only final layout pass. Keep source decorations and every functional node recoverable. */
+#room{--window-right:7%;--window-top:49px;--window-width:141px;--window-height:143px}
+#room .garland,#room .interior-mark,#room .memory-life,#room .room-caption{display:none}
+#room .rug:after{content:none}
+#room .wall-note{left:6%;top:24px;padding:0;background:none;border:0;box-shadow:none;transform:rotate(-2deg);font-size:9px;letter-spacing:1.2px;color:#a58f85}
+#room .wall-note:before{display:none}#room .wall-note b{font-size:12px;font-weight:400}
+/* A quiet wall collection; two small photos and one poster, no extra frames. */
+#room .room-memory-photo{left:19%;top:57px;width:61px;height:75px;padding:5px 5px 11px;transform:rotate(2deg);box-shadow:0 2px 3px #a58c7810}
+#room .room-friends-photo{left:27%;top:88px;width:64px;height:49px;transform:rotate(-2deg);box-shadow:0 2px 3px #a58c7810}
+#room .memory-poster{left:7%;top:90px;width:60px;height:76px;transform:rotate(-2deg)}
+#room .interior-birthday{left:26%;top:27px;width:50px;height:44px;transform:rotate(1deg)}
+/* Left: sleeping corner below; a small shared keepsake ledge above it. */
+#room .bed{left:5%;bottom:59px;width:205px;height:100px;border-width:1.5px;border-color:#c7b2a2;box-shadow:0 5px 7px #9b816b10}
+#room .blanket{background-image:repeating-linear-gradient(0deg,transparent 0 20px,#fff8ed33 21px 24px),repeating-linear-gradient(90deg,transparent 0 25px,#fff8ed3b 26px 29px);box-shadow:none}
+#room .memory-clock{left:6%;bottom:171px;width:51px;height:36px;transform:rotate(0)}
+#room .friend-jewelry{left:14%;top:183px;transform:rotate(-2deg)}
+#room .friend-headband{left:calc(14% + 52px);top:183px;transform:rotate(2deg)}
+#room .friend-jewelry:after{content:'';position:absolute;left:-6px;top:42px;width:104px;height:5px;border:1px solid #d3c0ad;border-radius:2px;background:#eadbc6;pointer-events:none}
+#room .room-pastel-plush{left:6%;bottom:115px;width:32px;height:49px;transform:rotate(-3deg)}
+#room .friend-dino{left:calc(5% + 159px);bottom:142px;transform:none}
+#room .interior-album{left:calc(5% + 148px);bottom:73px;width:49px;height:44px;transform:rotate(-3deg)}
+#room .room-diary-book{left:calc(5% + 92px);bottom:72px;transform:rotate(2deg)}
+/* Right: the sill holds stones and one plant; a music shelf below. */
+#room .interior-curtains{top:39px;height:154px;border-top-color:#d0bdb3}
+#room .interior-curtains:before,#room .interior-curtains:after{width:17px;border-color:#dfc4ca;background:repeating-linear-gradient(90deg,#ecd1d7a8 0 7px,#f5e1e6bb 8px 12px)}
+#room .friend-stones{right:calc(7% + 83px);top:155px;transform:none}
+#room .interior-plant{right:8%;top:157px;width:29px;height:36px}
+#room .memory-collection{right:6%;top:229px;width:126px;height:81px;transform:none}
+#room .interior-player{right:calc(6% + 135px);top:253px;width:56px;height:48px;transform:rotate(-1deg)}
+#room .room-memory-camera{right:calc(6% + 137px);bottom:62px;width:44px;height:36px;transform:rotate(2deg)}
+#room .cozy-corner{right:3%;bottom:48px;transform:scale(.74);transform-origin:bottom right}
+#room .interior-lamp-hit{right:3%;bottom:86px;width:44px;height:51px}
+#room .interior-lamp-hit:hover{background:none;border-color:#c7b5a877}
+#room .star-plush{right:15%;bottom:27px;width:57px;height:57px;transform:rotate(3deg)}
+#room .friend-dumbbell{right:5%;bottom:6px;transform:rotate(2deg)}
+#room .rug{left:32%;width:36%;bottom:19px;height:81px;border-width:5px;outline-color:#d6b8be;box-shadow:0 4px 6px #9576650d;background-image:none}
+#room .friend-object{padding:5px}#room .friend-dino[data-lit=true]:before{opacity:.12}
+#room:is([data-room-period=night],[data-room-period=evening],.sleeping) .friend-dino[data-lit=true]:before{opacity:.42}
+/* Let painted character parts receive drag/touch; transparent SVG margins don't steal furniture clicks. */
+#room .pet{z-index:3;pointer-events:none}
+#room .pet>svg{pointer-events:none}
+#room .pet>svg :is(path,ellipse,circle,rect,polygon){pointer-events:visiblePainted}
+@media(min-width:651px) and (max-width:800px){
+ #room .bed{width:175px}#room .friend-jewelry{left:12%}#room .friend-headband{left:calc(12% + 49px)}
+ #room .friend-dino{left:calc(5% + 130px)}#room .interior-album{left:calc(5% + 118px)}#room .room-diary-book{left:calc(5% + 63px)}
+ #room .room-friends-photo{left:28%;width:57px}#room .memory-collection{width:108px}#room .interior-player{right:calc(6% + 110px);width:48px}#room .room-memory-camera{right:calc(6% + 110px)}
+}
+@media(max-width:650px){
+ #room{height:460px;--window-right:5%;--window-width:96px;--window-height:110px;--window-top:48px}
+ #room .wall-note{left:5%;top:22px;font-size:7px}#room .wall-note b{font-size:9px}
+ #room .room-memory-photo{left:5%;top:74px;width:44px;height:54px;transform:rotate(1deg)}
+ #room .room-friends-photo{left:auto;right:5%;top:172px;width:56px;height:44px;transform:rotate(-1deg)}
+ #room .memory-poster{left:5%;top:133px;width:44px;height:57px}
+ #room .interior-birthday{left:auto;right:calc(5% + 53px);top:18px;width:44px;height:44px;transform:none}
+ #room .interior-curtains{top:38px;height:125px}#room .interior-curtains:before,#room .interior-curtains:after{height:88px;width:12px}
+ #room .friend-stones{right:calc(5% + 48px);top:122px}#room .interior-plant{right:6%;top:129px;width:23px;height:30px}
+ #room .bed{left:3%;bottom:57px;width:112px;height:78px}
+ #room .memory-clock{left:5%;bottom:144px;width:44px;height:32px}
+ #room .friend-jewelry{left:3%;top:196px}#room .friend-headband{left:calc(3% + 46px);top:196px}
+ #room .friend-jewelry:after{width:94px;left:-2px;top:41px}
+ #room .friend-dino{left:3%;bottom:93px}
+ #room .room-pastel-plush{left:calc(3% + 50px);bottom:177px;width:27px;height:42px}
+ #room .room-diary-book{left:3%;bottom:45px;width:44px;height:44px}
+ #room .interior-album{left:calc(3% + 52px);bottom:8px;width:44px;height:44px}
+ #room .memory-collection{right:4%;top:224px;width:75px;height:49px}
+ #room .interior-player{right:4%;top:280px;width:46px;height:44px}
+ #room .room-memory-camera{right:calc(4% + 49px);bottom:63px;width:44px;height:36px}
+ #room .cozy-corner{right:0;bottom:47px;transform:scale(.6)}
+ #room .interior-lamp-hit{right:0;bottom:84px;width:44px;height:46px}
+ #room .star-plush{right:17%;bottom:7px;width:45px;height:45px;transform:rotate(2deg)}
+ #room .friend-dumbbell{right:.5%;bottom:3px}
+ #room .rug{left:26%;width:48%;height:65px;bottom:17px}
+ #room .friend-object{padding:6px}
+}
+
+/* Wall-mounted keepsake ledge: retain both original object positions and hit areas. */
+#room .friend-jewelry:after{height:8px;border-color:#cbb6a1;background:linear-gradient(#f5e8d3 0 38%,#e7d5bd 39% 70%,#d6bfa4 71%);box-shadow:0 4px 5px #9e82671a;border-radius:2px 2px 3px 3px}
+#room .friend-jewelry:before{content:'';position:absolute;left:8px;top:49px;width:76px;height:13px;background:#cbb49b;clip-path:polygon(0 0,5% 0,5% 65%,16% 65%,16% 85%,0 85%,0 0,84% 0,89% 0,89% 65%,100% 65%,100% 85%,84% 85%);opacity:.75;pointer-events:none}
+
+/* A larger plush bed, with a light mattress rim and a visible wooden front edge. */
+#room .bed{width:235px;height:115px;z-index:1;background:linear-gradient(155deg,#fff7e7 0 57%,#eedcc4 58% 100%);border-color:#c4ad98;border-radius:25px 20px 9px 9px;box-shadow:inset 0 6px 0 #fffaf0,inset 0 -9px 0 #e3cbb0,5px 9px 10px #96775e20}
+#room .bed-side{left:5px;right:-8px;bottom:-12px;height:18px;border-width:1.5px;border-color:#c3a98e;background:linear-gradient(#e8d2b6 0 32%,#d3b594 33% 100%);box-shadow:2px 5px 5px #9b7d6115;transform:skewX(-12deg);border-radius:0 0 5px 5px}
+#room .bed:before,#room .bed:after{background:#c7ad91;box-shadow:2px 3px 3px #9e80631a}
+#room .bed .pillow{left:4%;top:8%;width:29%;height:35%;border-width:1.2px;border-color:#d8cbbb;background:linear-gradient(150deg,#fffdf2 25%,#f0e6d6);box-shadow:inset 0 -4px 0 #e5d7c744,2px 3px 4px #a68d7319;transform:rotate(-4deg)}
+#room .bed .blanket{width:64%;height:calc(100% - 12px);top:6px;right:-1px;border-color:#afc4ce;border-radius:17px 11px 7px 7px;background-color:#cadce5;box-shadow:inset 0 6px 0 #f5fbf05c,inset -5px -6px 0 #a9c1cd36,2px 4px 4px #8da7b51c;color:#fbf7e9}
+#room .bed .blanket:after{left:12px;right:8px;bottom:10px;height:15px;border-bottom:1.5px solid #91aebe66;box-shadow:0 3px 0 #e5edf13d;border-radius:50%}
+@media(min-width:651px) and (max-width:800px){#room .bed{width:195px;height:108px}}
+@media(max-width:650px){#room .bed{width:132px;height:90px;border-radius:20px 15px 7px 8px;box-shadow:inset 0 5px 0 #fffaf0,inset 0 -7px 0 #e3cbb0,3px 6px 7px #96775e1b}#room .bed-side{height:15px;right:-5px;bottom:-10px}#room .friend-jewelry:before{left:7px;top:48px;width:70px;height:12px}}

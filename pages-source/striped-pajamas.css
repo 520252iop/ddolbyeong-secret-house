@@ -1,0 +1,22 @@
+/* Clothing only: original skeleton, high hat, wing roots and feet stay intact. */
+svg[data-look=sohee-pajamas] .uniform-trim,
+svg[data-look=sohee-pajamas] .buttons,
+svg[data-look=sohee-pajamas] .hem-stitch,
+svg[data-look=sohee-pajamas] .pajama-detail{display:none}
+svg[data-look=sohee-pajamas] .suit{fill:#fff9e9;stroke:#877b75}
+svg[data-look=sohee-pajamas] .look-body-layer{pointer-events:none}
+/* Shared idle joints; expressions and active actions keep priority. */
+#room:not(.eating) svg[data-look=sohee-pajamas][data-motion=idle][data-personality=idle][data-expression=neutral] .torso-motion{animation:pajama-drowsy 5.8s ease-in-out infinite}
+#room:not(.eating) svg[data-look=sohee-pajamas][data-motion=idle][data-expression=neutral] .eyes{animation:pajama-blink 6.8s linear infinite;transform-origin:0 177px}
+#room:not(.eating) svg[data-look=sohee-pajamas][data-expression=yawn] .head-motion{animation:pajama-nod 2s ease-in-out both}
+#room:not(.eating) svg[data-look=sohee-pajamas][data-expression=yawn] .wing-cycle-left{animation:pajama-tuck-left 2s ease-in-out both}
+#room:not(.eating) svg[data-look=sohee-pajamas][data-expression=yawn] .wing-cycle-right{animation:pajama-tuck-right 2s ease-in-out both}
+#room.hat-changing svg[data-look=sohee-pajamas] .torso-motion,
+.wardrobe-preview.hat-changing svg[data-look=sohee-pajamas] .torso-motion{animation:pajama-show .65s ease-in-out both}
+@keyframes pajama-drowsy{0%,100%{transform:rotate(0)}30%{transform:rotate(-.8deg)}70%{transform:rotate(.8deg)}}
+@keyframes pajama-blink{0%,35%,48%,100%{transform:scaleY(1)}40%,43%{transform:scaleY(.04)}}
+@keyframes pajama-nod{0%,100%{transform:translateY(0)}45%,60%{transform:translateY(2px) rotate(1deg)}}
+@keyframes pajama-tuck-left{0%,100%{transform:rotate(0)}50%{transform:rotate(-7deg)}}
+@keyframes pajama-tuck-right{0%,100%{transform:rotate(0)}50%{transform:rotate(7deg)}}
+@keyframes pajama-show{0%,100%{transform:rotate(0)}30%{transform:rotate(-2deg)}70%{transform:rotate(2deg)}}
+@media(prefers-reduced-motion:reduce){svg[data-look=sohee-pajamas],svg[data-look=sohee-pajamas] *{animation:none!important;transition:none!important}}

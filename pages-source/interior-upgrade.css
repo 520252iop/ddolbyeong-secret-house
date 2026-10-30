@@ -1,0 +1,36 @@
+/* Room-only scrapbook surfaces; geometry and animation of the pet are untouched. */
+.room{--room-pencil:#c3aca2;--window-right:7%;--window-top:50px;--window-width:141px;--window-height:145px}
+.room .wall-note{left:5%;top:40px;padding:11px 14px;background:#fcf3db;box-shadow:1px 2px 3px #a58b7412;transform:rotate(-5deg);border:1px solid #dfcdbb;border-radius:3px 5px 3px 6px;letter-spacing:1px}
+.room .garland{left:36%;top:13px;font-size:19px;letter-spacing:8px;opacity:.65}
+.room .bed{left:4%;bottom:63px;width:213px;height:101px;border-color:#c1a99a;background:#f5e7d6;box-shadow:2px 6px 8px #96796612;border-width:2px;border-radius:23px 19px 8px 9px}
+.room .bed:before,.room .bed:after{background:#c5ae99}
+.room .blanket{background-color:#cddfe7;background-image:repeating-linear-gradient(0deg,transparent 0 16px,#fff8ed44 17px 22px),repeating-linear-gradient(90deg,transparent 0 19px,#fff8ed55 20px 25px);border-color:#b4c7cf;color:#faf6e9;border-width:1.4px;box-shadow:none;border-radius:17px 10px 5px 5px}
+.room .pillow{border-color:#d4c3b3;background:#fff8e9;box-shadow:inset -3px -3px 0 #f0e5d633}
+.room .rug{left:29%;width:43%;height:90px;bottom:20px;background-color:#edc8ce;background-image:repeating-linear-gradient(8deg,transparent 0 5px,#fff8ed17 6px 7px);border:6px solid #f4dbe0;outline:1px dashed #cfaab1;box-shadow:0 5px 7px #95766512}
+.room .rug:after{content:'✦　 ·　 ♡　 ·　 ✦';position:absolute;bottom:9px;left:18%;right:18%;text-align:center;color:#d1a8af;font-size:12px;letter-spacing:4px}
+.room .memory-clock{left:8%;bottom:171px;width:58px;height:36px}
+.room .memory-poster{left:24%;top:153px;width:62px;height:80px;transform:rotate(4deg)}
+.room .memory-collection{right:6%;top:214px;width:137px;height:89px}
+.room .room-memory-photo{left:24%;top:52px;width:65px;height:82px}
+.room .room-friends-photo{left:15%;top:100px;width:71px;height:54px}
+.room .room-pastel-plush{left:7%;bottom:117px}
+.room .room-memory-camera{right:8%;bottom:112px}
+.room .star-plush{right:5%;bottom:31px}
+.room .cozy-corner{right:3%;bottom:65px;transform:scale(.83);transform-origin:bottom right}
+.room .interior-object{position:absolute;z-index:2;border:0;padding:0;background:none;min-width:44px;min-height:44px;color:#9e8582}
+.interior-object svg{display:block;width:100%;height:100%;overflow:visible}
+.room .interior-album{left:18%;bottom:65px;width:57px;height:46px;transform:rotate(-7deg)}
+.room .interior-birthday{left:17%;top:27px;width:68px;height:48px;transform:rotate(5deg)}
+.room .interior-player{right:23%;top:150px;width:69px;height:53px;transform:rotate(-3deg)}
+.room .interior-lamp-hit{right:1%;bottom:116px;width:50px;height:65px;border:1px dashed transparent;border-radius:24px}
+.room .interior-lamp-hit:hover{border-color:#c5b39388;background:#f6e5b41f}
+.room .interior-curtains{position:absolute;right:calc(var(--window-right) - 12px);top:40px;width:calc(var(--window-width) + 24px);height:158px;z-index:2;pointer-events:none;border-top:3px solid #c5b5aa;border-radius:6px}
+.interior-curtains:before,.interior-curtains:after{content:'';position:absolute;top:0;width:21px;height:113px;background:repeating-linear-gradient(90deg,#edcad2bb 0 6px,#f8e0e5bb 7px 11px);border:1px solid #d6b6bf;clip-path:polygon(0 0,100% 0,88% 65%,72% 75%,94% 100%,0 100%);border-radius:1px 2px 12px 3px}
+.interior-curtains:after{right:0;transform:scaleX(-1)}
+.room .interior-plant{position:absolute;right:8%;top:169px;width:33px;height:38px;z-index:2;pointer-events:none}
+.room .interior-mark{position:absolute;right:25%;top:53px;color:#ad9991;font:12px LittleWorldHand,sans-serif;transform:rotate(-4deg);pointer-events:none;border-bottom:1px dashed #d2b9b7;padding:5px}
+.room .interior-object:hover{filter:brightness(1.035)}.room .interior-object:focus-visible{outline:2px dashed #b58f9e;outline-offset:3px}
+.memory-album-book{border-radius:10px 15px 12px 8px;border-color:#c6b7b0;box-shadow:2px 4px 8px #8d74641a}.memory-album-book .memory-large-photo{border-color:#c8d4d9;background:#edf3f5}.memory-photo-view.is-page-turn .memory-large-photo{animation:memory-page-turn .24s ease-out;transform-origin:left center}@keyframes memory-page-turn{from{opacity:.5;transform:translateX(5px) rotate(.35deg)}to{opacity:1;transform:none}}
+@media(max-width:800px) and (min-width:651px){.room .bed{width:175px}.room .interior-player{right:23%;width:55px}.room .memory-collection{right:5%;width:111px}.room .interior-album{left:19%;width:48px}}
+@media(max-width:650px){.room{--window-right:6%;--window-width:98px;--window-height:115px;--window-top:48px}.room .bed{left:3%;width:116px;height:82px;bottom:60px}.room .wall-note{top:45px;left:4%;padding:8px;font-size:7px}.room .wall-note b{font-size:9px}.room .garland{left:36%;font-size:13px;letter-spacing:3px}.room .memory-clock{left:4%;bottom:146px;width:45px;height:30px}.room .memory-poster{left:3%;top:147px;width:43px;height:58px}.room .room-memory-photo{left:23%;top:77px;width:43px;height:55px}.room .room-friends-photo{left:4%;top:101px;width:48px;height:35px}.room .memory-collection{right:4%;top:189px;width:76px;height:51px}.room .interior-player{right:5%;top:145px;width:48px;height:44px}.room .interior-birthday{left:23%;top:25px;width:45px;height:44px}.room .interior-album{left:20%;bottom:66px;width:44px;height:44px}.room .interior-mark{display:none}.room .interior-curtains{top:38px;height:129px}.interior-curtains:before,.interior-curtains:after{height:89px;width:15px}.room .interior-plant{right:7%;top:140px;width:25px;height:31px}.room .room-memory-camera{right:10%;bottom:102px;width:35px;height:29px}.room .interior-lamp-hit{right:0;bottom:108px;width:38px;height:48px}.room .cozy-corner{transform:scale(.65);right:0}.room .rug{left:22%;width:58%;height:75px}.room .room-pastel-plush{left:5%;bottom:111px}.room .star-plush{right:3%;bottom:32px}}
+@media(prefers-reduced-motion:reduce){.memory-photo-view.is-page-turn .memory-large-photo{animation:none}}

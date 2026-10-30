@@ -1,0 +1,14 @@
+/* Exclusive visibility: never draw resting wings and reaching wings at the same time. */
+.expressive-character[data-wing-pose] .wings-back,.expressive-character[data-wing-pose] .wings-front{visibility:visible}
+.expressive-character[data-wing-pose] .wing-normal,.expressive-character[data-wing-pose] .wing-sing-grip,.expressive-character[data-wing-pose] .wing-waist,.expressive-character[data-wing-pose] .stage-hand-layer{display:none!important}
+.expressive-character[data-wing-pose=rest] .wings-back .wing-normal{display:inline!important}
+.expressive-character[data-wing-pose=stage] .wings-back .wing-left .wing-normal{display:inline!important}
+.expressive-character[data-wing-pose=stage] .wings-front .wing-right .wing-normal{display:inline!important}
+.expressive-character[data-wing-pose=stage] .wings-front .stage-hand-layer{display:inline!important}
+.expressive-character[data-wing-pose=hold] .wings-front .wing-sing-grip,.expressive-character[data-wing-pose=sing] .wings-front .wing-sing-grip{display:inline!important}
+.expressive-character[data-wing-pose=shy] .wings-front .wing-normal{display:inline!important}
+.expressive-character[data-wing-pose=waist] .wings-front .wing-waist{display:inline!important}
+.room.hugging .wings-front .wing-cycle,.room.hugging .wings-front .wing{animation:none!important;transform:none!important}
+.room.hugging .held-prop-motion{animation:held-star-breathe 2.8s ease-in-out infinite;transform-origin:130px 270px}
+@keyframes held-star-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(1px)}}
+@media(prefers-reduced-motion:reduce){.room.hugging .held-prop-motion{animation:none!important}}

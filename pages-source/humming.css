@@ -1,0 +1,17 @@
+/* Closed-mouth humming uses only existing joints and existing singing state. */
+#room.humming #character .laugh-mouth,
+#room.humming #character .yawn-mouth{display:none}
+#room.humming #character .mouth-line{display:inline}
+#room.humming #character .eyes{display:inline;opacity:1;animation:humming-blink 4.7s linear infinite;transform-origin:0 177px}
+#room.humming #character .closed-eyes{display:none}
+#room.humming #character .head-motion{animation:humming-head 3.2s ease-in-out infinite}
+#room.humming #character .torso-motion{animation:humming-body 3.2s ease-in-out infinite}
+#room.humming #character .wing-cycle-left{animation:humming-wing-left 3.2s ease-in-out infinite}
+#room.humming #character .wing-cycle-right{animation:humming-wing-right 3.2s ease-in-out infinite}
+#room.humming #character .foot{animation:none}
+@keyframes humming-head{0%,100%{transform:rotate(-.6deg)}50%{transform:rotate(.6deg) translateY(.5px)}}
+@keyframes humming-body{0%,100%{transform:translateX(-.5px)}50%{transform:translateX(.5px)}}
+@keyframes humming-wing-left{0%,100%{transform:rotate(0)}50%{transform:rotate(3deg)}}
+@keyframes humming-wing-right{0%,100%{transform:rotate(0)}50%{transform:rotate(-3deg)}}
+@keyframes humming-blink{0%,43%,50%,100%{transform:scaleY(1)}46%,47%{transform:scaleY(.05)}}
+@media(prefers-reduced-motion:reduce){#room.humming #character,#room.humming #character *{animation:none!important;transition:none!important}}

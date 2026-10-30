@@ -1,0 +1,17 @@
+/* Existing joints and exclusive wing layers only: no new limbs, geometry or hat transforms. */
+.room .pet>svg[data-personality]:is([data-personality=happy],[data-personality=shy],[data-personality=smug],[data-personality=mischievous]){animation:none;transform:none}
+.room #character[data-personality=happy] .torso-motion{animation:personality-chuckle .45s ease-in-out 4}
+.room #character[data-personality=happy] .head-main-motion{animation:personality-nod .6s ease-in-out 3}
+.room #character[data-personality=happy] .wing-cycle-left{animation:personality-wing-left .24s ease-in-out 6}
+.room #character[data-personality=happy] .wing-cycle-right{animation:personality-wing-right .24s ease-in-out 6}
+.room #character[data-personality=shy] .head-main-motion{animation:personality-shy 1.1s ease-in-out 2}
+.room #character[data-personality=smug] .head-main-motion{animation:personality-proud 1s ease-in-out 2}
+.room #character[data-personality=mischievous] .head-main-motion{animation:personality-peek .95s ease-in-out 2}
+@keyframes personality-chuckle{50%{transform:translateY(-2px) scale(1.008,.985)}}
+@keyframes personality-nod{50%{transform:rotate(-1.3deg) translateY(1px)}}
+@keyframes personality-shy{50%{transform:rotate(2deg) translateY(1px)}}
+@keyframes personality-proud{50%{transform:translateY(-2px) rotate(-2deg)}}
+@keyframes personality-peek{35%{transform:rotate(-2deg)}70%{transform:rotate(1deg)}}
+@keyframes personality-wing-left{50%{transform:rotate(9deg)}}@keyframes personality-wing-right{50%{transform:rotate(-9deg)}}
+.motion-character[data-motion-paused=true] :is(.head-main-motion,.torso-motion,.wing-cycle){animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){.room #character[data-personality] :is(.head-main-motion,.torso-motion,.wing-cycle){animation:none!important}}
