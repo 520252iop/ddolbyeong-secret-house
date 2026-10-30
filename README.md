@@ -1,3 +1,5 @@
+> 2026-10-30: Mailbox now connects to Supabase Edge Functions. Earlier migration-unavailable notes below are historical. Live read, CAPTCHA, send and refresh were verified; remaining security regression checks were simulated.
+
 # DDOLBYEONG：GitHub Pages 迁移准备
 
 尚未上传、提交、推送或启用Pages。新URL不是已发布事实。

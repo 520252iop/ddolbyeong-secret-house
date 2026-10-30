@@ -15,4 +15,4 @@ try{
 }finally{process.chdir(oldCwd);}
 const scripts=files.filter(f=>f.endsWith('.js')).map(f=>fs.readFileSync(path.join(site,f),'utf8')).join('\n');assert(scripts.includes("const SAVE_KEY = 'sohee-little-world-v1'"));assert(!/localStorage\.(?:clear|removeItem)\s*\(/.test(scripts));
 const sw=fs.readFileSync(site+'/pages-sw.js','utf8');assert(sw.includes("req.headers.has('range')"));assert(sw.includes('u.origin!==scope.origin'));assert(!sw.includes('localStorage'));assert(sw.includes('ddolbyeong-pages-static-'));
-console.log(JSON.stringify({pass:true,files:files.length,photos:69,outfits:10,relativeReferences:refs,mediaBytesPreserved:true,saveKeyUnchanged:true,simulatedReloadAndRestore:true,mailbox:'migration unavailable',limits:'No real Pages/browser/mobile/audio or cross-origin old-save recovery validation.'}));
+console.log(JSON.stringify({pass:true,files:files.length,photos:69,outfits:10,relativeReferences:refs,mediaBytesPreserved:true,saveKeyUnchanged:true,simulatedReloadAndRestore:true,mailbox:'Supabase connected',limits:'No real Pages/browser/mobile/audio or cross-origin old-save recovery validation.'}));

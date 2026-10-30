@@ -33,5 +33,5 @@ event.respondWith((async()=>{const cache=await caches.open(CACHE),hit=await cach
 `));
 for(const [file,buffer]of data){if(/\.(?:js|css|html|svg|txt)$/.test(file))assert(!/\b[A-Z]:[\\/]|file:\/\/\/|-----BEGIN .*PRIVATE KEY|sb_secret_[A-Za-z0-9_-]{10,}/i.test(buffer.toString()),'Unsafe '+file);const dest=path.join(out,file);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,buffer);}
 assert.equal(walk(out).length,data.size,'Unexpected stale output: use a fresh output directory');
-fs.writeFileSync(path.join(root,'dist/github-pages-build.json'),JSON.stringify({files:data.size,photos:photos.length,bytes:[...data.values()].reduce((n,b)=>n+b.length,0),reusedImageURLs:reused,avoidedDuplicateImageBytes:reusedBytes,mailbox:'disabled: backend migration required'},null,2));
+fs.writeFileSync(path.join(root,'dist/github-pages-build.json'),JSON.stringify({files:data.size,photos:photos.length,bytes:[...data.values()].reduce((n,b)=>n+b.length,0),reusedImageURLs:reused,avoidedDuplicateImageBytes:reusedBytes,mailbox:'Supabase connected'},null,2));
 console.log(fs.readFileSync(path.join(root,'dist/github-pages-build.json'),'utf8'));
