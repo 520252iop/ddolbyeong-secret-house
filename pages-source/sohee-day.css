@@ -27,4 +27,10 @@
 .sohee-records{margin-top:.8rem;padding:.6rem;border-top:1px dashed #b66b52}.sohee-records summary{cursor:pointer;padding:.45rem}.sohee-records ul{list-style:none;margin:.3rem 0;padding:0}.sohee-records a{display:inline-block;padding:.6rem;color:inherit;text-underline-offset:3px}.sohee-records small{display:block}
 #soheeDay[data-scene="secret"] .sohee-records{display:none}
 
-.sohee-records li button{width:100%;margin:.18rem 0}.sohee-records button[aria-pressed="true"]{outline:2px solid #b66b52}.sohee-records iframe{display:block;width:100%;min-height:200px;aspect-ratio:16/9;border:0;margin:.5rem auto}.sohee-records button[hidden]{display:none}
+
+.sohee-letter-button,.sohee-music-button{position:absolute;z-index:16;left:4%;min-height:44px;padding:.35rem .65rem;background:#fff3df;color:#704a49;border:1px solid #ba9290;box-shadow:3px 3px #ad8c8050;border-radius:6px}
+.sohee-letter-button{top:16%;transform:rotate(-4deg)}.sohee-music-button{bottom:3%}
+#soheeLetter{width:min(90vw,480px);max-height:85vh;overflow:auto;border:1px solid #bea198;background:#f1ded7;color:#654744;padding:1.15rem;box-sizing:border-box}
+#soheeLetter::backdrop{background:#49344b94}
+.sohee-letter-paper{padding:1.15rem 1.1rem .75rem;background:repeating-linear-gradient(#fff8e8 0 30px,#ead5c8 30px 31px);border:1px dashed #c69d96;font-family:ZCOOLKuaiLe,'KaiTi',cursive;line-height:1.75;letter-spacing:.04em}
+.sohee-letter-paper h2{margin:.25rem 0 1rem;font-size:1.35rem}.sohee-signature{text-align:right}

@@ -1,10 +1,10 @@
 'use strict';
 (() => {
- const start = Date.parse('2026-11-15T00:00:00+09:00');
+ const start = Date.parse('2026-11-20T00:00:00+09:00');
  const party = Date.parse('2026-11-21T00:00:00+09:00');
  const night = Date.parse('2026-11-21T23:21:00+09:00');
  const end = Date.parse('2026-11-22T00:00:00+09:00');
- const keepsake = Date.parse('2026-12-01T00:00:00+09:00');
+ const keepsake = Date.parse('2026-11-23T00:00:00+09:00');
  const phase = now => now < start ? 'before' : now < party ? 'warmup' : now < end ? 'party' : now < keepsake ? 'keepsake' : 'after';
  if (typeof module !== 'undefined' && module.exports) {
   module.exports = {phase, start, party, night, end, keepsake};
@@ -23,8 +23,37 @@
  const birthdayButton = byId('soheeBirthdaySong');
  const songStatus = byId('soheeSongStatus');
  const records = byId('soheeRecords');
- const player = byId('soheeTrackPlayer');
- let selectedTrack = null;
+ const letter = byId('soheeLetter');
+ const letterOpen = byId('soheeLetterOpen');
+ const bgm = byId('soheeBgm');
+ const bgmToggle = byId('soheeBgmToggle');
+ // Populate in playback order with approved, approximately one-minute audio files.
+ const soundtrack = [];
+ let trackIndex = 0;
+ let attempted = false;
+ function playBackground() {
+  if (!soundtrack.length || document.hidden || !['warmup','party','keepsake'].includes(phase(Date.now()))) return;
+  if (!bgm.getAttribute('src')) bgm.src = soundtrack[trackIndex];
+  if (typeof pauseRoomMusic === 'function' && (roomMusicPlaying || roomMusicPending)) pauseRoomMusic(false);
+  bgm.play().catch(() => { bgmToggle.textContent = '♫ 点一下播放背景音乐'; });
+ }
+ bgmToggle.addEventListener('click', () => {
+  if (bgm.paused) { stopBirthdaySong(); playBackground(); } else bgm.pause();
+ });
+ bgm.addEventListener('ended', () => {
+  trackIndex = (trackIndex + 1) % soundtrack.length;
+  bgm.src = soundtrack[trackIndex];
+  playBackground();
+ });
+ bgm.addEventListener('error', () => { bgmToggle.textContent = '♫ 背景音乐暂不可用'; });
+ for (const event of ['play','pause']) bgm.addEventListener(event, () => {
+  bgmToggle.textContent = bgm.paused ? '♫ 播放生日背景音乐' : 'Ⅱ 暂停生日背景音乐';
+ });
+ byId('roomMusicToggle').addEventListener('click', () => { if (soundtrack.length) bgm.pause(); });
+ letterOpen.addEventListener('click', () => {
+  if (Date.now() >= party && Date.now() < keepsake) letter.showModal();
+ });
+ byId('soheeLetterClose').addEventListener('click', () => letter.close());
  function stopBirthdaySong() {
   birthdayAudio.pause();
   birthdayAudio.currentTime = 0;
@@ -39,43 +68,18 @@
  birthdayButton.addEventListener('click', () => {
   if (phase(Date.now()) !== 'party') return;
   if (!birthdayAudio.paused) { stopBirthdaySong(); return; }
-  stopTrack();
+  if (soundtrack.length) bgm.pause();
   if (typeof pauseRoomMusic === 'function') pauseRoomMusic(false);
   songStatus.hidden = true;
   birthdayAudio.play().catch(showSongError);
  });
  for (const event of ['play', 'pause', 'ended']) birthdayAudio.addEventListener(event, syncBirthdayButton);
  birthdayAudio.addEventListener('error', showSongError);
- function stopTrack() {
-  if (selectedTrack) selectedTrack.setAttribute('aria-pressed', 'false');
-  selectedTrack = null;
-  player.replaceChildren();
-  player.hidden = true;
- }
- function stopRecordPlayback() {
-  stopBirthdaySong();
-  stopTrack();
- }
- records.addEventListener('click', event => {
-  const track = event.target.closest('button[data-sohee-track]');
-  if (!track) return;
-  if (track === selectedTrack) { stopTrack(); return; }
-  stopRecordPlayback();
-  if (typeof pauseRoomMusic === 'function') pauseRoomMusic(false);
-  songStatus.hidden = true;
-  const frame = document.createElement('iframe');
-  frame.title = track.textContent;
-  frame.allow = 'autoplay; encrypted-media; fullscreen';
-  frame.referrerPolicy = 'strict-origin-when-cross-origin';
-  frame.src = 'https://www.youtube-nocookie.com/embed/' + track.dataset.soheeTrack + '?autoplay=1&playsinline=1&rel=0';
-  player.replaceChildren(frame);
-  player.hidden = false;
-  selectedTrack = track;
-  track.setAttribute('aria-pressed', 'true');
+ records.addEventListener('toggle', () => { if (!records.open) stopBirthdaySong(); });
+ dialog.addEventListener('close', stopBirthdaySong);
+ document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { stopBirthdaySong(); if (soundtrack.length) bgm.pause(); }
  });
- records.addEventListener('toggle', () => { if (!records.open) stopRecordPlayback(); });
- dialog.addEventListener('close', stopRecordPlayback);
- document.addEventListener('visibilitychange', () => { if (document.hidden) stopRecordPlayback(); });
 
  const steps = ['挂好手写彩旗', '给蛋糕点一根蜡烛', '绑好礼物丝带'];
  const lines = ['旗子挂歪了一点点。豆兵说，这样才看得出是亲手挂的。', '豆兵护住小小的火苗。爸爸许愿的时候，要闭上眼睛哦。', '豆兵从丝带后探出头来。原来它把自己也打包进了礼物里！'];
@@ -120,8 +124,15 @@
   const now = Date.now();
   const current = phase(now);
   const birthdayOpen = current === 'party';
+  const active = ['warmup','party','keepsake'].includes(current);
+  letterOpen.hidden = now < party || now >= keepsake;
+  if (letterOpen.hidden && letter.open) letter.close();
+  bgmToggle.hidden = !active || !soundtrack.length;
+  if (active && soundtrack.length && !attempted && !document.hidden) { attempted = true; playBackground(); }
+  if (!active && soundtrack.length && !bgm.paused) bgm.pause();
   if (!birthdayOpen && !birthdayButton.hidden) stopBirthdaySong();
   birthdayButton.hidden = !birthdayOpen;
+  records.hidden = !birthdayOpen && current !== 'warmup';
   byId('soheeBirthdayHint').hidden = current !== 'warmup';
   const data = record();
   gift.hidden = !['warmup', 'party'].includes(current);
@@ -161,7 +172,7 @@
  }
  function open(scene) {
   refresh();
-  if (scene === 'secret') stopRecordPlayback();
+  if (scene === 'secret') stopBirthdaySong();
   mode = scene;
   storyStep = 0;
   updateCard();
