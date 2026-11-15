@@ -34,3 +34,5 @@
 #soheeLetter::backdrop{background:#49344b94}
 .sohee-letter-paper{padding:1.15rem 1.1rem .75rem;background:repeating-linear-gradient(#fff8e8 0 30px,#ead5c8 30px 31px);border:1px dashed #c69d96;font-family:ZCOOLKuaiLe,'KaiTi',cursive;line-height:1.75;letter-spacing:.04em}
 .sohee-letter-paper h2{margin:.25rem 0 1rem;font-size:1.35rem}.sohee-signature{text-align:right}
+
+#roomMusicControls{display:none}

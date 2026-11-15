@@ -26,14 +26,7 @@
  const letter = byId('soheeLetter');
  const letterOpen = byId('soheeLetterOpen');
  const bgm = byId('soheeBgm');
- const soundtrack = [
-  "assets/audio/inside-my-life.mp3",
-  "assets/audio/love-on-the-canvas.mp3",
-  "assets/audio/made-the-night-magic.mp3",
-  "assets/audio/wine-kiss.mp3"
- ];
  bgm.volume = .09;
- let trackIndex = 0;
  let attempted = false;
  let resumeOnReturn = false;
  function stopListeningForGesture() {
@@ -46,8 +39,7 @@
   playBackground();
  }
  function playBackground() {
-  if (!soundtrack.length || document.hidden) return;
-  if (!bgm.getAttribute('src')) bgm.src = soundtrack[trackIndex];
+  if (document.hidden) return;
   if (typeof pauseRoomMusic === 'function' && (roomMusicPlaying || roomMusicPending)) pauseRoomMusic(false);
   bgm.play().then(stopListeningForGesture).catch(error => {
    if (error.name !== 'NotAllowedError') return;
@@ -55,12 +47,6 @@
    document.addEventListener('keydown', playOnGesture, true);
   });
  }
- bgm.addEventListener('ended', () => {
-  trackIndex = (trackIndex + 1) % soundtrack.length;
-  bgm.src = soundtrack[trackIndex];
-  playBackground();
- });
- byId('roomMusicToggle').addEventListener('click', () => { if (soundtrack.length) bgm.pause(); });
  letterOpen.addEventListener('click', () => {
   if (Date.now() >= party && Date.now() < keepsake) letter.showModal();
  });
@@ -79,7 +65,7 @@
  birthdayButton.addEventListener('click', () => {
   if (phase(Date.now()) !== 'party') return;
   if (!birthdayAudio.paused) { stopBirthdaySong(); return; }
-  if (soundtrack.length) bgm.pause();
+  bgm.pause();
   if (typeof pauseRoomMusic === 'function') pauseRoomMusic(false);
   songStatus.hidden = true;
   birthdayAudio.play().catch(showSongError);
@@ -144,7 +130,7 @@
   const birthdayOpen = current === 'party';
   letterOpen.hidden = now < party || now >= keepsake;
   if (letterOpen.hidden && letter.open) letter.close();
-  if (soundtrack.length && !attempted && !document.hidden) { attempted = true; playBackground(); }
+  if (!attempted && !document.hidden) { attempted = true; playBackground(); }
   if (!birthdayOpen && !birthdayButton.hidden) stopBirthdaySong();
   birthdayButton.hidden = !birthdayOpen;
   records.hidden = !birthdayOpen && current !== 'warmup';
