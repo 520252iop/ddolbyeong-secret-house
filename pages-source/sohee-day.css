@@ -26,3 +26,5 @@
 
 .sohee-records{margin-top:.8rem;padding:.6rem;border-top:1px dashed #b66b52}.sohee-records summary{cursor:pointer;padding:.45rem}.sohee-records ul{list-style:none;margin:.3rem 0;padding:0}.sohee-records a{display:inline-block;padding:.6rem;color:inherit;text-underline-offset:3px}.sohee-records small{display:block}
 #soheeDay[data-scene="secret"] .sohee-records{display:none}
+
+.sohee-records li button{width:100%;margin:.18rem 0}.sohee-records button[aria-pressed="true"]{outline:2px solid #b66b52}.sohee-records iframe{display:block;width:100%;min-height:200px;aspect-ratio:16/9;border:0;margin:.5rem auto}.sohee-records button[hidden]{display:none}

@@ -22,6 +22,9 @@
  const birthdayAudio = byId('soheeBirthdayAudio');
  const birthdayButton = byId('soheeBirthdaySong');
  const songStatus = byId('soheeSongStatus');
+ const records = byId('soheeRecords');
+ const player = byId('soheeTrackPlayer');
+ let selectedTrack = null;
  function stopBirthdaySong() {
   birthdayAudio.pause();
   birthdayAudio.currentTime = 0;
@@ -34,20 +37,45 @@
   songStatus.textContent = '音乐盒暂时播不了。生日任务可以继续。';
  }
  birthdayButton.addEventListener('click', () => {
+  if (phase(Date.now()) !== 'party') return;
   if (!birthdayAudio.paused) { stopBirthdaySong(); return; }
+  stopTrack();
   if (typeof pauseRoomMusic === 'function') pauseRoomMusic(false);
   songStatus.hidden = true;
   birthdayAudio.play().catch(showSongError);
  });
  for (const event of ['play', 'pause', 'ended']) birthdayAudio.addEventListener(event, syncBirthdayButton);
  birthdayAudio.addEventListener('error', showSongError);
- byId('soheeRecords').addEventListener('click', event => {
-  if (!event.target.closest('a')) return;
+ function stopTrack() {
+  if (selectedTrack) selectedTrack.setAttribute('aria-pressed', 'false');
+  selectedTrack = null;
+  player.replaceChildren();
+  player.hidden = true;
+ }
+ function stopRecordPlayback() {
   stopBirthdaySong();
+  stopTrack();
+ }
+ records.addEventListener('click', event => {
+  const track = event.target.closest('button[data-sohee-track]');
+  if (!track) return;
+  if (track === selectedTrack) { stopTrack(); return; }
+  stopRecordPlayback();
   if (typeof pauseRoomMusic === 'function') pauseRoomMusic(false);
+  songStatus.hidden = true;
+  const frame = document.createElement('iframe');
+  frame.title = track.textContent;
+  frame.allow = 'autoplay; encrypted-media; fullscreen';
+  frame.referrerPolicy = 'strict-origin-when-cross-origin';
+  frame.src = 'https://www.youtube-nocookie.com/embed/' + track.dataset.soheeTrack + '?autoplay=1&playsinline=1&rel=0';
+  player.replaceChildren(frame);
+  player.hidden = false;
+  selectedTrack = track;
+  track.setAttribute('aria-pressed', 'true');
  });
- dialog.addEventListener('close', stopBirthdaySong);
- document.addEventListener('visibilitychange', () => { if (document.hidden) stopBirthdaySong(); });
+ records.addEventListener('toggle', () => { if (!records.open) stopRecordPlayback(); });
+ dialog.addEventListener('close', stopRecordPlayback);
+ document.addEventListener('visibilitychange', () => { if (document.hidden) stopRecordPlayback(); });
 
  const steps = ['挂好手写彩旗', '给蛋糕点一根蜡烛', '绑好礼物丝带'];
  const lines = ['旗子挂歪了一点点。豆兵说，这样才看得出是亲手挂的。', '豆兵护住小小的火苗。爸爸许愿的时候，要闭上眼睛哦。', '豆兵从丝带后探出头来。原来它把自己也打包进了礼物里！'];
@@ -91,6 +119,10 @@
  function refresh() {
   const now = Date.now();
   const current = phase(now);
+  const birthdayOpen = current === 'party';
+  if (!birthdayOpen && !birthdayButton.hidden) stopBirthdaySong();
+  birthdayButton.hidden = !birthdayOpen;
+  byId('soheeBirthdayHint').hidden = current !== 'warmup';
   const data = record();
   gift.hidden = !['warmup', 'party'].includes(current);
   archive.hidden = data.step < 3 && !data.star && current !== 'keepsake';
@@ -129,6 +161,7 @@
  }
  function open(scene) {
   refresh();
+  if (scene === 'secret') stopRecordPlayback();
   mode = scene;
   storyStep = 0;
   updateCard();
