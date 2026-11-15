@@ -54,9 +54,12 @@ function buildHatCards(){
   card.append(number,image,name,trial);hatCards.set(hat.id,{card,image,trial});return card;
  });$('hatGrid').replaceChildren(...elements);
 }
+const SOHEE_FOX_OUTFIT={id:"sohee-fox",name:"生日小狐狸",detail:"橙色连体衣 · 歪歪生日帽"};
+function wardrobeOutfits(){return state.soheeDay2026?.step===3?[...WARDROBE_OUTFITS,SOHEE_FOX_OUTFIT]:WARDROBE_OUTFITS;}
 function buildClothesCards(){
- $('clothesTab').textContent=`造型 · ${WARDROBE_OUTFITS.length}`;
- $('clothesGrid').replaceChildren(...WARDROBE_OUTFITS.map(outfit=>{
+ clothesCards.clear();
+ $('clothesTab').textContent=`造型 · ${wardrobeOutfits().length}`;
+ $('clothesGrid').replaceChildren(...wardrobeOutfits().map(outfit=>{
   const b=document.createElement('button');b.className=`clothes-card outfit-${outfit.id}`;
   const thumbnail=document.createElement('div');thumbnail.className='clothes-thumbnail';thumbnail.append(cloneWardrobeCharacter(outfit.id,wardrobeDraft.hat));
   const name=document.createElement('b');name.textContent=outfit.name;
@@ -84,14 +87,14 @@ function previewHat(id){
  // 服装缩略图同时沿用正在试戴的帽子。
  for(const button of clothesCards.values())paintHat(button.querySelector('svg'),id);
 }
-function previewOutfit(id){if(!wardrobeDraft||!WARDROBE_OUTFITS.some(o=>o.id===id))return;const changed=wardrobeDraft.outfit!==id;wardrobeDraft.outfit=id;if(changed&&['stage','sleepy'].includes(id))wardrobeDraft.hat='classic';drawWardrobePreview(true);for(const button of clothesCards.values())paintHat(button.querySelector('svg'),wardrobeDraft.hat);wardrobeLine();}
+function previewOutfit(id){if(!wardrobeDraft||!wardrobeOutfits().some(o=>o.id===id))return;const changed=wardrobeDraft.outfit!==id;wardrobeDraft.outfit=id;if(changed&&['stage','sleepy'].includes(id))wardrobeDraft.hat='classic';drawWardrobePreview(true);for(const button of clothesCards.values())paintHat(button.querySelector('svg'),wardrobeDraft.hat);wardrobeLine();}
 function stepHat(direction){if(!wardrobeDraft)return;const current=HAT_COLLECTION.findIndex(h=>h.id===wardrobeDraft.hat);const next=(current+direction+HAT_COLLECTION.length)%HAT_COLLECTION.length;previewHat(HAT_COLLECTION[next].id);hatCards.get(wardrobeDraft.hat).card.scrollIntoView({block:'nearest',behavior:'smooth'});}
 function wardrobeTab(which){
  const hats=which==='hats';$('hatsTab').setAttribute('aria-selected',String(hats));$('clothesTab').setAttribute('aria-selected',String(!hats));$('hatsTab').tabIndex=hats?0:-1;$('clothesTab').tabIndex=hats?-1:0;$('hatsPanel').hidden=!hats;$('clothesPanel').hidden=hats;
 }
 function openWardrobe(){
  if(!canTouch()||drag)return;clearPose();stopSinging();returnHome();cheekTimes=[];
- wardrobeDraft={hat:findHat(state.hat).id,outfit:WARDROBE_OUTFITS.some(o=>o.id===state.outfit)?state.outfit:'classic'};
+ wardrobeDraft={hat:findHat(state.hat).id,outfit:wardrobeOutfits().some(o=>o.id===state.outfit)?state.outfit:'classic'};
  buildClothesCards();wardrobeTab('hats');drawWardrobePreview();$('wardrobeLine').textContent='挑一顶，把今天戴成喜欢的样子 ♡';$('wardrobeDialog').showModal();
 }
 function closeWardrobe(){clearTimeout(wardrobeAnimationTimer);wardrobeDraft=null;$('wardrobeDialog').close();lastActive=Date.now();}

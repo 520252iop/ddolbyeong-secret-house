@@ -101,8 +101,13 @@ const CHARACTER_LOOK_ART = {
  <g class="sleepy-pillow"><path d="M113 253q21-8 41 1l9 34q-8 15-39 12l-17-31q-4-10 6-16Z" fill="#626779" stroke="#4d4d61" stroke-width="2.5"/><path d="m119 261 12 30m-7-32 13 32" stroke="#7e8495" stroke-width="1.2" opacity=".6"/></g>`,hand:''}
 };
 let characterLookSerial=0;
+CHARACTER_LOOK_ART['sohee-fox']={
+ head:'<g shape-rendering="crispEdges"><path fill="#91503a" d="M69 130V60h19v12h18v13h49V72h17V60h19v70Z"/><path fill="#eb9756" d="M74 124V65h10v12h17v13h59V77h16V65h10v59Z"/><path fill="#ffe4c7" d="M80 75h7v13h10v10H80zm100 0h-7v13h-10v10h17z"/><path fill="#a65952" d="M117 115l16-37 19 37Z"/><path fill="#ffe29c" d="M124 105h20v5h-20z"/></g>',
+ body:'<g><path fill="#eb9756" stroke="#91503a" stroke-width="3" d="M91 220q39 15 78 0l9 74q-47 30-96 0Z"/><path fill="#ffe4c7" d="M104 243q24-10 50 0l9 45q-31 14-65 0Z"/><path fill="#a65952" d="m111 229 19 8 19-8v15l-19-5-19 5z"/></g>',
+ hand:''
+};
 function applyCharacterLook(svg,outfit,asleep=false){
- const look=['classic','stage','sleepy','sohee-pajamas','berry-zip','midnight-jersey','lemon-flight','maid','piggy','i-love-sh'].includes(outfit)?outfit:'classic';
+ const look=['classic','stage','sleepy','sohee-pajamas','berry-zip','midnight-jersey','lemon-flight','maid','piggy','i-love-sh'].includes(outfit)||outfit==='sohee-fox'?outfit:'classic';
  if(svg.dataset.look!==look||svg.dataset.lookVersion!=='3'){
   const art=CHARACTER_LOOK_ART[look]||{head:'',body:'',hand:''};
   const prefix='look-'+(++characterLookSerial)+'-';
