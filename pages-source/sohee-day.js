@@ -36,8 +36,10 @@
  bgm.volume = .35;
  let trackIndex = 0;
  let attempted = false;
+ const audioPreview = new URLSearchParams(window.location?.search).get('preview') === 'music';
+ const musicAvailable = now => audioPreview || (now >= start && now < keepsake);
  function playBackground() {
-  if (!soundtrack.length || document.hidden || !['warmup','party','keepsake'].includes(phase(Date.now()))) return;
+  if (!soundtrack.length || document.hidden || !musicAvailable(Date.now())) return;
   if (!bgm.getAttribute('src')) bgm.src = soundtrack[trackIndex];
   if (typeof pauseRoomMusic === 'function' && (roomMusicPlaying || roomMusicPending)) pauseRoomMusic(false);
   bgm.play().catch(() => { bgmToggle.textContent = '♫ 点一下播放背景音乐'; });
@@ -129,7 +131,7 @@
   const now = Date.now();
   const current = phase(now);
   const birthdayOpen = current === 'party';
-  const active = ['warmup','party','keepsake'].includes(current);
+  const active = musicAvailable(now);
   letterOpen.hidden = now < party || now >= keepsake;
   if (letterOpen.hidden && letter.open) letter.close();
   bgmToggle.hidden = !active || !soundtrack.length;
