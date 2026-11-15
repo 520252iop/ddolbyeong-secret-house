@@ -27,8 +27,13 @@
  const letterOpen = byId('soheeLetterOpen');
  const bgm = byId('soheeBgm');
  const bgmToggle = byId('soheeBgmToggle');
- // Populate in playback order with approved, approximately one-minute audio files.
- const soundtrack = [];
+ const soundtrack = [
+  "assets/audio/inside-my-life.mp3",
+  "assets/audio/love-on-the-canvas.mp3",
+  "assets/audio/made-the-night-magic.mp3",
+  "assets/audio/wine-kiss.mp3"
+ ];
+ bgm.volume = .35;
  let trackIndex = 0;
  let attempted = false;
  function playBackground() {
