@@ -1,5 +1,4 @@
-'use strict';
-// V2 仅扩展原来的 sohee-little-world-v1 存档，不更换键、不清空 V1 字段。
+'use strict';
 const TASKS = [
  {type:'pat',goal:3,label:'摸摸豆兵的头 3 次'}, {type:'food',goal:2,label:'分享 2 份小点心'},
  {type:'hug',goal:2,label:'和星星抱枕拥抱 2 次'}, {type:'game',goal:1,label:'完整玩一局小游戏'},
@@ -50,9 +49,7 @@ function renderV2(){
  $('stickerAlbum').replaceChildren(...STICKERS.map(s=>{const b=document.createElement('button');const owned=state.stickers.includes(s.id);b.className='sticker'+(owned?' unlocked':'');b.setAttribute('aria-label',`${s.name}：${owned?'已解锁':s.hint}`);const icon=document.createElement('span');icon.textContent=owned?s.icon:'?';const label=document.createElement('small');label.textContent=s.name;b.append(icon,label);b.addEventListener('click',()=>openDialog(`${owned?s.icon:'✧'} ${s.name}`,`${owned?'这枚贴纸，纪念我们一起度过的小瞬间。':'还没收集到，慢慢来就好。'}\n解锁方式：${s.hint}\n当前进度：${Math.min(s.goal,state.memories[s.type]||0)}/${s.goal}`));return b;}));
  const sky={sunny:['☀','晴天'],rainy:['☂','雨天'],night:['☾','夜晚']}[state.weather];
  $('window').dataset.weather=state.weather;$('skySymbol').textContent=sky[0];$('window').setAttribute('aria-label',`窗户：当前${sky[1]}，点击切换天气`);if(typeof syncRoomTime==='function')syncRoomTime();
-}
-
-// 动画状态独立于存档：不会把暂时的害羞、拖动或小游戏计时保存进去。
+}
 let poseTimer,walkTimer,idleTimer,lastActive=Date.now(),busy=false,drag=null,cheekTimes=[];
 let suppressClick=false;
 const POSES=['head-love','shy','laughing','pouting','hugging','idle-blink','idle-yawn','idle-look','idle-smirk','idle-stare','idle-brow'];
@@ -68,7 +65,7 @@ function touchCheek(){
  else{pose('shy',1900);say('哎呀……脸颊热乎乎的！');particles(['♡','✿']);}
  interact({affection:2,mood:3},'cheek');
 }
-function touchBelly(){if(!canTouch())return;cheekTimes=[];pose('laughing');say('哈哈哈！这里藏着豆兵的痒痒开关！');particles(['ha','♪','✦']);interact({affection:2,mood:5},'belly');}
+function touchBelly(){if(!canTouch())return;cheekTimes=[];pose('laughing');say($('room').dataset.soheePhase==='party'?'哈哈！你挠的是豆兵，掉下来的是生日彩糖！':'哈哈哈！这里藏着豆兵的痒痒开关！');particles(['ha','♪','✦']);interact({affection:2,mood:5},'belly');}
 const originalSleep=actions.sleep;
 actions.sleep=function(){if(busy)return;cheekTimes=[];clearPose();if(sleeping)returnHome();originalSleep();};
 const originalSing=actions.sing;
@@ -111,9 +108,7 @@ $('pet').addEventListener('click',e=>{if(e.detail===0&&!suppressClick)actions.pa
 function scheduleIdle(){clearTimeout(idleTimer);idleTimer=setTimeout(()=>{
  if(!(typeof roomHasDialog==='function'&&roomHasDialog())&&!document.hidden&&!sleeping&&!busy&&!drag&&!game&&Date.now()-lastActive>8000&&!$('choiceDialog').open&&!$('miniDialog').open&&!document.getElementById('wardrobeDialog')?.open){const types=['idle-blink','idle-yawn','idle-look','idle-smirk','idle-stare','idle-brow'];const type=types[Math.floor(Math.random()*types.length)];pose(type,type==='idle-blink'?350:2600);}
  scheduleIdle();},9000+Math.random()*6000);}
-document.addEventListener('pointerdown',()=>lastActive=Date.now());document.addEventListener('keydown',()=>lastActive=Date.now());
-
-// 小游戏：同一个动画循环管理时间和暂停，结束后只结算一次。
+document.addEventListener('pointerdown',()=>lastActive=Date.now());document.addEventListener('keydown',()=>lastActive=Date.now());
 let game=null,frameId=0;
 function openMini(mode){
  if(!canTouch())return;clearPose();returnHome();stopSinging();
@@ -161,7 +156,6 @@ $('miniDialog').addEventListener('keyup',e=>{if(game)game.keys.delete(e.key.leng
 $('catchGame').addEventListener('click',()=>openMini('catch'));$('rhythmGame').addEventListener('click',()=>openMini('rhythm'));$('startMini').addEventListener('click',startMini);$('pauseMini').addEventListener('click',pauseMini);$('beatButton').addEventListener('click',hitBeat);$('closeMini').addEventListener('click',closeMini);$('miniDialog').addEventListener('cancel',e=>{e.preventDefault();closeMini();});$('miniDialog').addEventListener('close',()=>{cancelAnimationFrame(frameId);game=null;});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){if(game?.phase==='running')pauseMini();if(drag)releasePet({pointerId:drag.id},true);}else{ensureTask();save();renderV2();lastActive=Date.now();}});
 window.addEventListener('blur',()=>{if(game?.phase==='running')pauseMini();});
-window.addEventListener('resize',()=>{if(!drag)returnHome();});
-// 每分钟检查自然日切换，不触发签到或奖励。
+window.addEventListener('resize',()=>{if(!drag)returnHome();});
 setInterval(()=>{if(!document.hidden&&state.task.date!==localDate()){ensureTask();save();renderV2();}},60000);
 initV2();scheduleIdle();

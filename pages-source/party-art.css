@@ -1,0 +1,147 @@
+.party-cake-room{isolation:isolate;background:linear-gradient(180deg,#f7d7ed 0%,#fce7e1 65%,#e5c4dc 65% 67%,#bbdfdc 67%,#d8f0df 100%)!important}
+.party-cake-room::before{content:none!important}
+.party-cake-room #bed,.party-cake-room .bedside-cabinet,.party-cake-room .wall-note,.party-cake-room .garland{display:none!important}
+.party-cake-room .rug{background:repeating-conic-gradient(#f9da9d 0 25%,#fff2ce 0 50%) 50%/24px 24px;border:3px solid #fbecc9;box-shadow:0 4px #929c925a}
+.party-cake-room .sohee-banner{display:grid;justify-items:center;gap:0;top:3%;z-index:8;padding:.32em .85em .38em;background:#fff6ce;color:#775190;border:2px solid #a675b0;box-shadow:4px 4px #b978a4;transform:translateX(-50%) rotate(-3deg);font:900 clamp(.7rem,3.4vw,1.4rem)/1.08 'Gochi Hand',system-ui,sans-serif;letter-spacing:.045em;border-radius:12px 4px 14px 5px}
+.party-cake-room .sohee-banner b{color:#bb4d77;font-size:1.36em;letter-spacing:.12em}
+.party-cake-room .review-bunting{display:block;left:24%;right:19%;top:20%;background:repeating-linear-gradient(90deg,#ee86b2 0 24px,#afd98f 24px 48px,#91dce2 48px 72px,#f8bb66 72px 96px)}
+.party-cake-room .review-balloons{display:block;top:28%;right:4%;left:auto;transform:rotate(12deg)}
+.party-mobile{display:none}
+.party-cake-room .party-mobile{display:flex;align-items:flex-start;gap:11px;position:absolute;left:7%;top:0;z-index:4;pointer-events:none}
+.party-mobile i{font:normal 26px/1 system-ui;color:#7e58a4;text-shadow:2px 2px #fff9dd;border-top:21px solid transparent;position:relative}
+.party-mobile i::before{content:'';position:absolute;top:-22px;left:50%;height:23px;border-left:1px dashed #8b6599}
+.party-mobile i:nth-child(2){margin-top:12px;color:#b65879}.party-mobile i:nth-child(3){color:#418a8f}
+.cake-table{position:absolute;z-index:12;left:4%;bottom:12%;width:clamp(108px,23%,195px);border:0;background:transparent;padding:0;display:grid;justify-items:center;color:#63344c;filter:drop-shadow(1px 5px 0 #75456d35)}
+.cake-table svg{width:100%;height:auto;overflow:visible}.cake-table span{background:#fff2d6;border:1px solid #a36c8c;padding:.27em .52em;border-radius:6px;line-height:1.4;font-size:clamp(.7rem,1.5vw,.95rem);transform:rotate(-3deg)}
+.cake-table:hover svg{transform:translateY(-3px)}.cake-table[hidden]{display:none}
+.review-popper{width:clamp(56px,11%,92px);bottom:11%;right:4%;display:grid;justify-items:center;border:0;padding:0;background:none;box-shadow:none;transform:none}
+.review-popper svg{width:100%;height:auto;filter:drop-shadow(2px 4px 0 #64457455)}.review-popper small{font-size:.64rem;background:#eee0fa;color:#634575;border:1px solid #ba98c8;border-radius:5px;padding:2px 4px;white-space:nowrap}.review-popper:not([hidden])::before{content:none}
+.review-popper:active svg{transform:rotate(-10deg) scale(.94)}#reviewConfetti{right:11%;bottom:28%}
+#reviewConfetti i:nth-child(3n){border-radius:50%;width:8px;height:8px}#reviewConfetti i:nth-child(4n){width:5px;height:23px;border-radius:60%}
+.party-cake-room #soheeLetterOpen:not([hidden]){top:31%;left:7%;width:88px;height:55px;background-color:#fff6d7;border-color:#b78cb6;box-shadow:4px 4px #b78cb665}
+#soheeLetter .sohee-letter-paper{position:relative;overflow:hidden;background:radial-gradient(ellipse at top right,#e8ddff 0,transparent 33%),radial-gradient(ellipse at bottom left,#d5f1e9 0,transparent 30%),repeating-linear-gradient(#fffaef 0 30px,#eedee8 30px 31px);border:2px dashed #b496c6;border-radius:18px 8px 22px 7px;color:#523651}
+#soheeLetter .sohee-letter-paper h2{font-size:1.55rem;color:#7b518a}.letter-orbit{color:#8a659e;letter-spacing:.37em;text-align:left;line-height:1.35;margin-bottom:.7rem}.letter-orbit span:first-child{color:#ce6d9a}.letter-orbit span:last-child{color:#408785}
+.letter-seal{position:absolute;top:14px;right:14px;border:2px dotted #946db1;border-radius:40%;background:#f9cce2;color:#85528c;padding:.26em .45em;line-height:.85;font-size:1.1rem;transform:rotate(12deg)}
+#soheeDay:not([data-scene="secret"]){background:#fff5e9;border-color:#b48abc;box-shadow:5px 6px #72508285}
+.review-cake{background:radial-gradient(circle at 50% 58%,#fff5df 0 30%,transparent 70%),repeating-conic-gradient(#ffdfec 0 25%,#f9edf8 0 50%) 0 0/24px 24px;border:2px solid #d9b3d8;box-shadow:inset 0 0 0 4px #fffbeb;height:152px}
+.review-cake[data-show-sponge="true"] .review-sponge{display:block;left:8%;bottom:8px;width:84%;height:54px;border-radius:14px 14px 9px 9px;background:linear-gradient(var(--cake-sponge) 0 43%,#fff0d8 43% 57%,var(--cake-sponge) 57%);box-shadow:inset 0 -4px #a95d7137;border:1px solid #936e7a}
+.review-cake[data-show-cream="true"] .review-icing{display:block;left:8%;bottom:42px;width:84%;height:20px;background:var(--cake-cream);border-radius:12px 12px 35% 35%;border:1px solid #a7738c}
+.review-cake[data-show-topping="true"] .review-berries{display:block;left:16%;bottom:55px;width:68%;color:var(--cake-topping);letter-spacing:.12em;text-shadow:1px 1px #7c4469}
+.cake-choices{border:0;padding:0;margin:.5rem 0}.cake-choices legend{margin:auto;color:#693e71;font-weight:700}.cake-choices div{display:flex;flex-wrap:wrap;justify-content:center;gap:.35rem;margin:.45rem 0}
+.cake-choices button{min-height:44px;border:1px solid #a8799d;border-radius:8px;background:#fffaf0;color:#603a56;padding:.3rem .54rem}
+.cake-choices button::before{content:'';display:inline-block;width:.7em;height:.7em;margin-right:.32em;background:var(--choice);border-radius:50%;border:1px solid #9f7c91}
+.cake-choices button[aria-pressed="true"]{background:#f3ddef;outline:2px solid #935d9e}
+#soheeAction:disabled{opacity:.55}
+@media(max-width:480px){.party-cake-room #soheeLetterOpen:not([hidden]){top:28%;left:3%;width:74px;height:47px}.party-cake-room .party-mobile{left:3%;gap:4px}.party-mobile i{font-size:19px}.cake-table{left:2%;width:100px}.review-popper{right:3%}.party-cake-room .review-bunting{top:20%;height:14px}}
+.review-popper svg{transform:scaleX(-1)}.review-popper:active svg{transform:scaleX(-1) rotate(-10deg) scale(.94)}
+
+.review-popper small{background:#f9e6dd;color:#725263;border-color:#c9a7ab}
+#soheeLetter .sohee-letter-paper{font-family:LittleWorldMarker,'KaiTi',cursive;font-size:clamp(1.04rem,3.4vw,1.19rem);line-height:1.68;letter-spacing:.025em}
+#soheeLetter .sohee-letter-paper h2{font-size:clamp(1.65rem,5.2vw,2.12rem);font-weight:400;transform:rotate(-2deg);transform-origin:left}
+#soheeLetter .sohee-letter-paper p:nth-of-type(2){transform:rotate(-.55deg);transform-origin:left}
+#soheeLetter .sohee-letter-paper p:nth-of-type(3){transform:rotate(.5deg);transform-origin:left}
+.letter-signoff{display:flex;align-items:flex-end;justify-content:space-between;gap:.45rem}
+.letter-doodle{width:clamp(90px,35%,145px);height:auto;flex:none;transform:rotate(-5deg);filter:drop-shadow(1px 2px #b392b340)}
+.letter-signoff .sohee-signature{margin:.2rem 0}
+
+#soheeLetter .sohee-letter-paper{font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;font-size:clamp(1rem,2.35vw,1.13rem);line-height:1.8;letter-spacing:.015em}
+#soheeLetter .sohee-letter-paper h2{font-family:LittleWorldMarker,"Microsoft YaHei",sans-serif}
+.letter-toolbar{position:sticky;top:0;z-index:3;display:flex;justify-content:flex-end;padding:0 0 .6rem;background:#f1ded7}
+#soheeLetter .letter-close{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;padding:.35rem .75rem;background:#fff6e6;color:#704d69;border:1px solid #aa7f9e;border-radius:20px;font:600 .92rem/1.2 "Microsoft YaHei",sans-serif;cursor:pointer}
+#soheeLetter .letter-close span{font-size:1.1rem}
+#soheeLetter .letter-close:focus-visible{outline:2px solid #784b83;outline-offset:2px}
+.party-cake-room .speech{top:9px;z-index:10;max-width:82%;white-space:normal;width:max-content;text-align:center}
+.party-cake-room .sohee-banner{top:15%;left:5%;max-width:27%;transform:rotate(-5deg);padding:.42em .95em .45em;font-size:clamp(.53rem,1.65vw,1rem);white-space:nowrap;box-sizing:border-box}
+.party-cake-room .sohee-banner .banner-doodle{position:absolute;width:16px;height:16px;left:-7px;top:-5px;overflow:visible}
+.party-cake-room .sohee-banner .banner-doodle:last-child{left:auto;top:auto;right:-6px;bottom:-4px;transform:rotate(10deg)}
+.party-cake-room .review-bunting{left:33%;right:19%;top:19%}
+.review-popper svg{filter:drop-shadow(2px 3px 0 #78516942)}
+@media(max-width:480px){.party-cake-room .sohee-banner{left:4%;max-width:31%;top:16%;padding:.38em .68em}.party-cake-room .sohee-banner .banner-doodle{width:12px;height:12px}.party-cake-room .speech{top:8px;padding:.55em .75em}.party-cake-room .review-bunting{left:36%}}
+
+#room.has-birthday-letter .birthday-trophy{display:none}
+#room.has-birthday-letter #soheeLetterOpen:not([hidden]){left:auto;right:calc(12% + 2px);top:245px;width:62px;height:44px;transform:rotate(-9deg);padding:4px;z-index:17}
+#room.has-birthday-letter .review-envelope-label{font-size:.63rem;padding:1px 2px;white-space:nowrap}
+#room.has-birthday-letter .review-envelope-stamp{font-size:.63rem;right:4px;top:3px}
+#room.party-cake-room :is(#friendJewelry,#friendDinoLamp,#friendDumbbell,#friendHeadband,#friendStones){display:none!important}
+.birthday-mic,.birthday-candle{position:absolute;z-index:5;width:44px;height:46px;border:0;background:none;padding:0}
+.birthday-mic{left:18%;top:55%}.birthday-candle{right:8%;bottom:10%}
+.birthday-mic svg,.birthday-candle svg{width:100%;height:100%}
+.birthday-mic[hidden],.birthday-candle[hidden]{display:none}
+.birthday-flame{visibility:hidden}.birthday-candle[aria-pressed="true"] .birthday-flame{visibility:visible;filter:drop-shadow(0 0 4px #ffd17d)}
+@media(min-width:651px) and (max-width:800px){#room.has-birthday-letter #soheeLetterOpen:not([hidden]){right:calc(14% + 1px);top:283px}}
+@media(max-width:650px){#room.has-birthday-letter #soheeLetterOpen:not([hidden]){right:calc(4% + 12px);top:341px;width:52px;height:40px}.birthday-mic{left:17%;top:51%}.birthday-candle{right:2%;bottom:7%}}
+
+#room.party-cake-room #roomMemoryPhoto{left:17%;right:auto;top:118px;z-index:6}
+#room.party-cake-room #roomFriendsPhoto{left:26%;right:auto;top:130px;z-index:6}
+#room.party-cake-room #roomDiaryBook{left:9%;right:auto;top:156px;bottom:auto;width:44px;height:44px;z-index:6;transform:rotate(-7deg);background:#f9e9eb;border:1px solid #c49ab1;border-radius:7px;box-shadow:2px 2px #98657e2c}
+#room.party-cake-room #roomDiaryBook::before{content:'';position:absolute;left:47%;top:-10px;height:9px;border-left:1px solid #a8779d}
+#room.has-birthday-letter #soheeLetterOpen:not([hidden]){left:var(--letter-x,59%);top:var(--letter-y,71%);right:auto;width:66px;height:46px;transform:translate(-23%,-64%) rotate(10deg);z-index:17}
+#room.has-birthday-letter .birthday-trophy{display:initial}
+@media(max-width:650px){#room.party-cake-room #roomMemoryPhoto{left:5%;top:113px}#room.party-cake-room #roomFriendsPhoto{left:18%;top:124px;width:49px;height:40px}#room.party-cake-room #roomDiaryBook{left:8%;top:176px}#room.has-birthday-letter #soheeLetterOpen:not([hidden]){width:55px;height:42px}}
+
+#room.party-cake-room :is(#roomDiaryBook,#memoryPoster),#room.has-birthday-letter #starPlush{display:none!important}
+#room #birthdayCakePoster[hidden]{display:none}
+#room.party-cake-room #birthdayCakePoster:not([hidden]){top:116px}
+#room.has-birthday-letter #soheeLetterOpen:not([hidden]){left:auto;right:calc(12% + 79px);top:311px;width:58px;height:44px;transform:rotate(-8deg)}
+#room.party-cake-room .review-popper{right:2%}
+#room.party-cake-room #reviewConfetti{right:9%}
+[data-look="sohee-fox"] .uniform-torso > :is(.suit,.buttons,.hem-stitch,.pajama-detail),[data-look="sohee-fox"] .uniform-trim{visibility:hidden}
+@media(min-width:651px) and (max-width:800px){#room.has-birthday-letter #soheeLetterOpen:not([hidden]){right:calc(14% + 72px);top:349px;width:52px}}
+@media(max-width:650px){#room.party-cake-room #birthdayCakePoster:not([hidden]){left:4%;top:170px}#room.has-birthday-letter #soheeLetterOpen:not([hidden]){right:calc(4% + 54px);top:390px;width:45px}#room.party-cake-room .review-popper{right:1%}}
+
+.table-cake-served{display:none}
+.birthday-cake-served .table-cake-unserved{display:none}
+.birthday-cake-served .table-cake-served{display:initial}
+.birthday-cake-served .served-flame{filter:drop-shadow(0 0 4px #ffc265)}
+.party-cake-room.birthday-cake-served::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at 22% 66%,#ffd68465,transparent 52%);animation:cake-light .65s ease-out both}
+@keyframes cake-light{from{opacity:0}to{opacity:1}}
+#birthdayMicDialog{width:min(92vw,360px);box-sizing:border-box;max-height:90vh;overflow:auto;padding:1rem 1.15rem 1.3rem;border:2px solid #c091b0;border-radius:18px 7px 16px 8px;background:#fff4dd;color:#65475c;text-align:center;box-shadow:4px 5px #a4719560}
+#birthdayMicDialog::backdrop{background:#3d273778}
+#birthdayMicDialog button{min-height:44px;border:1px solid #b883a6;border-radius:9px;background:#f2d7e5;color:#603853;padding:.35rem .7rem}
+#birthdayMicDialog .mic-close{display:block;margin:0 0 .7rem auto;background:#fffbef}
+.mic-inscription{display:flex;align-items:center;justify-content:center;gap:.55rem;background:#e9d9ed;color:#795184;border-radius:8px;padding:.35rem .65rem}
+.mic-inscription h2{font:1.65rem/1.2 LittleWorldHand,system-ui,sans-serif;margin:0}.mic-inscription span{color:#a4658c}
+@media(prefers-reduced-motion:reduce){.party-cake-room.birthday-cake-served::after{animation:none}}
+
+.birthday-window-charms{display:none}
+#room.party-cake-room .birthday-window-charms{position:absolute;display:flex;right:6.1%;top:15%;width:13%;justify-content:space-around;align-items:flex-start;z-index:5;pointer-events:none}
+.birthday-window-charms span{display:grid;justify-items:center;color:#9874aa;filter:drop-shadow(1px 2px 0 #fff5e6);transform-origin:top;animation:party-charms 5s ease-in-out infinite alternate}
+.birthday-window-charms span::before{content:"";height:24px;border-left:1px dashed #b998ad}
+.birthday-window-charms span:nth-child(2){color:#b9688b;animation-delay:-2.1s}.birthday-window-charms span:nth-child(2)::before{height:38px}
+.birthday-window-charms span:last-child{color:#719b99;animation-delay:-3.4s}.birthday-window-charms span:last-child::before{height:17px}
+.birthday-window-charms i{font:normal clamp(.7rem,1.9vw,1.2rem)/1 system-ui}
+@keyframes party-charms{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+#room.party-cake-room :is(#roomMemoryPhoto,#roomFriendsPhoto){overflow:visible;box-shadow:2px 4px 5px #805e6c2b}
+#room.party-cake-room :is(#roomMemoryPhoto,#roomFriendsPhoto)::after{content:"";position:absolute;top:-5px;left:27%;width:49%;height:10px;background:repeating-linear-gradient(48deg,#fbecd09c 0 5px,#f9dbc9a6 5px 7px);border:1px solid #e9cdb989;transform:rotate(-8deg);pointer-events:none}
+#room.party-cake-room #roomFriendsPhoto::after{background:repeating-linear-gradient(48deg,#e7d9efa8 0 5px,#e8c8e1b0 5px 7px);transform:rotate(6deg)}
+#room.party-cake-room #reviewCakeTable:not([hidden]) svg{filter:drop-shadow(1px 4px 0 #946e8a33)}
+.letter-mail-invite{margin-top:.75rem;padding-top:.7rem;border-top:1px dashed #c39eb7}
+.letter-mail-invite p{margin:.35rem 0 0;color:#634a64;font-size:.9rem}
+#birthdayMailInvite{min-height:44px;padding:.35rem .7rem;border:1px solid #ad7da5;border-radius:7px;background:#f5dfec;color:#674660;font:inherit;font-weight:600;cursor:pointer}
+#birthdayMailInvite:focus-visible{outline:2px solid #895e95;outline-offset:2px}
+@media(max-width:650px){#room.party-cake-room .birthday-window-charms{right:7%;top:17%;width:17%}}
+@media(prefers-reduced-motion:reduce){.birthday-window-charms span{animation:none}}
+
+.birthday-mic-label{display:block;width:max-content;max-width:80px;margin:-4px auto 0;transform:translateX(-8px);background:#fff1d9;border:1px solid #b88aab;border-radius:5px;color:#774d70;padding:.12rem .32rem;font-size:.68rem;line-height:1.3;white-space:nowrap}
+#birthdayMic:focus-visible{outline:2px dashed #a16590;outline-offset:3px;border-radius:7px}
+#soheeDay #soheeAction:not([hidden]){border:1px solid #ac789c;border-radius:8px;background:#f5dbe9;color:#643654;padding:.4rem .82rem;font-weight:700}
+#soheeDay #soheeAction:focus-visible{outline:2px solid #885c87;outline-offset:2px}
+
+#room.party-cake-room .birthday-candle{right:7.5%;top:52%;bottom:auto}
+@media(max-width:650px){#room.party-cake-room .birthday-candle{right:5%;top:59%}}
+
+.birthday-room-surfaces{display:none;position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#room.party-cake-room .birthday-room-surfaces{display:block}
+.party-wallpaper,.party-wainscot,.party-baseboard,.party-floor-grid{position:absolute;width:100%;left:0}
+.party-wallpaper{top:0;height:66%;background:radial-gradient(ellipse at 83% 25%,#fff7e6 0,transparent 45%),radial-gradient(ellipse at 12% 3%,#edd9f1 0,transparent 58%),repeating-linear-gradient(90deg,#fff5e51f 0 22px,transparent 22px 47px),linear-gradient(#f2d3e7,#fae8df)}
+.party-wallpaper::after{content:"";position:absolute;inset:0;background-image:radial-gradient(ellipse,#b984a34d 0 1.2px,transparent 1.6px),radial-gradient(ellipse,#fff9e6bb 0 1.5px,transparent 2px);background-size:36px 36px;background-position:0 0,18px 18px;mask-image:linear-gradient(#000 0 60%,transparent 99%)}
+.party-wainscot{top:55%;height:12%;background:repeating-linear-gradient(90deg,#efcddb 0 35px,#e5bfcf 36px,#f8e0df 37px 40px);border-top:3px solid #f7e8d7;box-shadow:inset 0 2px #d4a6bd74}
+.party-wainscot::after{content:"";position:absolute;inset:8px 0 7px;background:repeating-linear-gradient(90deg,transparent 0 5px,#f7dfdfaa 6px 33px,transparent 34px 40px)}
+.party-baseboard{top:65%;height:3%;background:linear-gradient(#f9e5cf 0 28%,#cc9db2 28% 48%,#e7bed0 48% 78%,#a98ca64a 78%);box-shadow:0 2px 2px #79567340;z-index:1}
+.party-floor-grid{top:67%;height:33%;background:linear-gradient(180deg,#d2e5df,#e9f0df)}
+.party-floor-grid path{fill:#b6d8d3;fill-opacity:.64;stroke:#f9f0dc;stroke-width:.6;stroke-opacity:.72}
+#room.party-cake-room .rug{z-index:1;border:4px solid #fff1db;outline:1px solid #d6a0b8;box-shadow:0 5px 0 #8f988f35,inset 0 0 0 4px #f8d8d8;background:repeating-conic-gradient(#f4c2d4 0 25%,#f8d9dd 0 50%) 50%/24px 24px}
+#room.party-cake-room .right-storage-cabinet{z-index:4}
+#room.party-cake-room .right-storage-cabinet .birthday-candle{right:-3px;top:-38px;bottom:auto;width:38px;height:44px;pointer-events:auto;z-index:2}
+#room.party-cake-room .right-storage-cabinet .birthday-candle:focus-visible{outline:2px dashed #926997;outline-offset:1px}
+@media(max-width:650px){#room.party-cake-room .right-storage-cabinet .birthday-candle{right:-1px;top:-34px;width:32px;height:40px}.party-wallpaper::after{background-size:26px 26px}}

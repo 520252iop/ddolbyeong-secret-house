@@ -1,5 +1,5 @@
 'use strict';
-// 完整造型沿用 outfit 存档字段。头发/眼罩属于头部附加层，永久高筒节点始终保留。
+
 const CHARACTER_LOOK_ART = {
  'i-love-sh':{head:'',hand:'',body:`
  <g class="reference-outfit i-love-sh-shirt" stroke-linecap="round" stroke-linejoin="round">
@@ -102,17 +102,17 @@ const CHARACTER_LOOK_ART = {
 };
 let characterLookSerial=0;
 CHARACTER_LOOK_ART['sohee-fox']={
- head:'<g shape-rendering="crispEdges"><path fill="#91503a" d="M69 130V60h19v12h18v13h49V72h17V60h19v70Z"/><path fill="#eb9756" d="M74 124V65h10v12h17v13h59V77h16V65h10v59Z"/><path fill="#ffe4c7" d="M80 75h7v13h10v10H80zm100 0h-7v13h-10v10h17z"/><path fill="#a65952" d="M117 115l16-37 19 37Z"/><path fill="#ffe29c" d="M124 105h20v5h-20z"/></g>',
- body:'<g><path fill="#eb9756" stroke="#91503a" stroke-width="3" d="M91 220q39 15 78 0l9 74q-47 30-96 0Z"/><path fill="#ffe4c7" d="M104 243q24-10 50 0l9 45q-31 14-65 0Z"/><path fill="#a65952" d="m111 229 19 8 19-8v15l-19-5-19 5z"/></g>',
+ head:'<g transform="translate(21 0) rotate(17 140 65)" stroke="#886180" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M99 69 140 6l40 67q-37 13-81-4Z" fill="#f4b9c5"/><path d="m122 34 25-9m-39 30 50-15m-52 30 62-16" fill="none" stroke="#fff0cf" stroke-width="5"/><path d="M101 66q42 14 77 1l4 7q-40 14-84 1Z" fill="#d8c6ed"/><circle cx="141" cy="9" r="8" fill="#ffdc92"/><path d="m150 47 2 5 5 1-4 3 1 5-4-3-4 3 1-5-4-3 5-1Z" fill="#ffe19b" stroke-width="1.4"/></g>',
+ body:'<g stroke="#986e84" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M102 226q-9 5-15 24l-9 44-4 24q18 14 56 15 38-1 56-15l-4-24-9-44q-6-19-15-24l-12 3-5 11h-22l-5-11Z" fill="#fff1d9"/><path d="M83 271q46 8 94 0l9 47q-18 14-56 15-38-1-56-15Z" fill="#f4bfd0"/><path d="M78 314q51 19 104 0" fill="none" stroke="#fff5df" stroke-width="5" stroke-dasharray="1 7"/><path d="M104 279h52v28q-26 18-52 0Z" fill="#e7d6f5"/><path d="m130 286 3 5 6 1-4 5 1 6-6-3-6 3 1-6-4-5 6-1z" fill="#f7d283" stroke-width="1.4"/><path d="M118 242q-16-14-23-7-6 12 8 15l15-5m24-3q16-14 23-7 6 12-8 15l-15-5" fill="#cbb6e4"/><path d="M123 237q7-4 14 0v10q-7 5-14 0Z" fill="#cbb6e4"/></g>',
  hand:''
 };
 function applyCharacterLook(svg,outfit,asleep=false){
  const look=['classic','stage','sleepy','sohee-pajamas','berry-zip','midnight-jersey','lemon-flight','maid','piggy','i-love-sh'].includes(outfit)||outfit==='sohee-fox'?outfit:'classic';
- if(svg.dataset.look!==look||svg.dataset.lookVersion!=='3'){
+ if(svg.dataset.look!==look||svg.dataset.lookVersion!=='6'){
   const art=CHARACTER_LOOK_ART[look]||{head:'',body:'',hand:''};
   const prefix='look-'+(++characterLookSerial)+'-';
   for(const [part,key]of [['look-head-layer','head'],['look-body-layer','body'],['stage-hand-layer','hand']]){const layer=svg.querySelector('.'+part);if(layer)layer.innerHTML=(art[key]||'').replaceAll('__LOOK_UID__',prefix);}
-  svg.dataset.look=look;svg.dataset.lookVersion='3';
+  svg.dataset.look=look;svg.dataset.lookVersion='6';
  }
  svg.dataset.asleep=String(Boolean(asleep));
 }

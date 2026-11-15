@@ -1,5 +1,5 @@
 'use strict';
-// 收藏馆共用房间中的 SVG 豆兵，预览只克隆角色；只有「保存搭配」会写入存档。
+
 const HAT_LINES = [
  '这顶帽子，装着今天的小小好心情！','锵锵！今天是你的专属小模特 ♡',
  '帽子换好了，可爱也加满啦～','镜子说：这顶和豆兵很配！',
@@ -39,7 +39,7 @@ function createHatThumbnail(hat){
 }
 function cloneWardrobeCharacter(outfit,hat){
  const svg=$('character').cloneNode(true);svg.removeAttribute('id');
- // Rebuild outfit-local clip IDs: previews coexist with the live character.
+
  delete svg.dataset.lookVersion;
  svg.dataset.motion='preview';if(typeof applyFace==='function')applyFace(svg,'neutral');else svg.dataset.expression='neutral';if(typeof applyCharacterLook==='function')applyCharacterLook(svg,outfit,false);paintHat(svg,hat);if(typeof syncWingPose==='function')syncWingPose(svg);return svg;
 }
@@ -54,8 +54,8 @@ function buildHatCards(){
   card.append(number,image,name,trial);hatCards.set(hat.id,{card,image,trial});return card;
  });$('hatGrid').replaceChildren(...elements);
 }
-const SOHEE_FOX_OUTFIT={id:"sohee-fox",name:"生日小狐狸",detail:"橙色连体衣 · 歪歪生日帽"};
-function wardrobeOutfits(){return state.soheeDay2026?.step===3?[...WARDROBE_OUTFITS,SOHEE_FOX_OUTFIT]:WARDROBE_OUTFITS;}
+const SOHEE_BIRTHDAY_OUTFIT={id:"sohee-fox",name:"生日蛋糕师",detail:"草莓奶油围裙 · 彩条尖顶生日帽"};
+function wardrobeOutfits(){return state.soheeDay2026?.step===3?[...WARDROBE_OUTFITS,SOHEE_BIRTHDAY_OUTFIT]:WARDROBE_OUTFITS;}
 function buildClothesCards(){
  clothesCards.clear();
  $('clothesTab').textContent=`造型 · ${wardrobeOutfits().length}`;
@@ -84,7 +84,7 @@ function wardrobeLine(){const line=HAT_LINES[Math.floor(Math.random()*HAT_LINES.
 function previewHat(id){
  if(!wardrobeDraft||!HAT_COLLECTION.some(h=>h.id===id))return;
  wardrobeDraft.hat=id;drawWardrobePreview(true);wardrobeLine();
- // 服装缩略图同时沿用正在试戴的帽子。
+
  for(const button of clothesCards.values())paintHat(button.querySelector('svg'),id);
 }
 function previewOutfit(id){if(!wardrobeDraft||!wardrobeOutfits().some(o=>o.id===id))return;const changed=wardrobeDraft.outfit!==id;wardrobeDraft.outfit=id;if(changed&&['stage','sleepy'].includes(id))wardrobeDraft.hat='classic';drawWardrobePreview(true);for(const button of clothesCards.values())paintHat(button.querySelector('svg'),wardrobeDraft.hat);wardrobeLine();}
@@ -109,7 +109,7 @@ function saveWardrobe(){
 }
 function initHatCollection(){
  state.hat=findHat(state.hat).id;paintHat($('character'),state.hat);save();buildHatCards();
- // 动态替换换装动作；底部原按钮仍然复用 actions.dress，不改变其他互动入口。
+
  actions.dress=openWardrobe;
  $('closeWardrobe').addEventListener('click',closeWardrobe);$('saveWardrobe').addEventListener('click',saveWardrobe);
  $('previousHat').addEventListener('click',()=>stepHat(-1));$('nextHat').addEventListener('click',()=>stepHat(1));$('resetHat').addEventListener('click',()=>previewHat('classic'));

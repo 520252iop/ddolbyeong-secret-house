@@ -1,8 +1,8 @@
 'use strict';
-// A read-only photo collection: no storage writes or progression rewards.
+
 const MEMORY_CATEGORIES={sohee:'SOHEE & DDOLBYEONG',friends:'RIIZE & FRIENDS',moments:'LITTLE MOMENTS',daily:"DDOLBYEONG’S DAILY LIFE",stage:'STAGE & MEMORIES',original:'豆兵的小屋故事'};
 let memoryCategory='sohee',memoryPhotoId=null,memoryReturnFocus=null;
-function memoryAlbumPhotos(){return [...MEMORY_PHOTOS,...(typeof state!=='undefined'&&state.soheeDay2026?.step===3?[{id:"sohee-day-2026",category:"original",title:"SOHEE DAY · 1121",src:"assets/sohee-day-2026.svg",thumb:"assets/sohee-day-2026.svg",width:448,height:384}]:[]),...(typeof mischiefAlbumPhotos==='function'?mischiefAlbumPhotos():[])];}
+function memoryAlbumPhotos(){return [...MEMORY_PHOTOS,...(typeof mischiefAlbumPhotos==='function'?mischiefAlbumPhotos():[])];}
 function memoryNode(tag,className,text){const node=document.createElement(tag);node.className=className;if(text!==undefined)node.textContent=text;return node;}
 function memoryImage(photo,full=false){const image=memoryNode('img','');image.src=full?photo.src:photo.thumb;image.alt=photo.title+(photo.category==='friends'?'（完整合照）':'');image.width=photo.width;image.height=photo.height;image.loading=full?'eager':'lazy';image.decoding='async';image.addEventListener('error',()=>{image.alt='照片暂时无法显示：'+photo.title;});return image;}
 function renderMemoryAlbum(){

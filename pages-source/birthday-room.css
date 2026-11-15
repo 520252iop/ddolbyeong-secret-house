@@ -1,0 +1,22 @@
+
+#soheeLetterOpen:not([hidden]){display:grid;align-content:end;width:105px;height:65px;padding:8px;background:linear-gradient(147deg,transparent 49%,#dabca5 50%,transparent 51%) 0 0/52% 55% no-repeat,linear-gradient(213deg,transparent 49%,#dabca5 50%,transparent 51%) 100% 0/52% 55% no-repeat,#fff4df;border:1px solid #bd9584;box-shadow:3px 4px #a56e5940;font-family:inherit;transform:rotate(-7deg)}.review-envelope-stamp{position:absolute;right:7px;top:6px;background:#efc5b3;color:#85514b;border:1px dashed #aa7869;padding:0 4px}.review-envelope-label{background:#fff8e7;border-radius:3px;font-size:.83rem;padding:.12rem;color:#705150}
+
+.sohee-party .sohee-banner{top:4%;width:max-content;max-width:83%;transform:translateX(-50%) rotate(-2deg);padding:.45em .65em;border:2px dashed #bf8678;background:#ffeed9;color:#843e48;box-shadow:3px 4px #cf9d8c66;font-size:clamp(.64rem,3vw,1.24rem)}
+.review-bunting,.review-balloons{display:none;position:absolute;pointer-events:none;z-index:3}
+.sohee-party .review-bunting,.sohee-party .review-balloons{display:block}
+.review-bunting{left:18%;right:18%;top:14%;height:22px;background:repeating-linear-gradient(90deg,#e69b8b 0 24px,#f4cb91 24px 48px,#bda8c6 48px 72px);mask:conic-gradient(from 150deg at 50% 100%,transparent 0 300deg,#000 0) 0 0/24px 100%}
+.review-balloons{left:5%;top:29%;width:60px;height:108px;background:radial-gradient(ellipse at center,#e9a493 55%,transparent 58%) 0 1%/37px 51px no-repeat,radial-gradient(ellipse at center,#eec584 55%,transparent 58%) 100% 20%/37px 51px no-repeat,linear-gradient(80deg,transparent 48%,#bc8c7d 49% 51%,transparent 52%) 9px 45px/20px 45px no-repeat,linear-gradient(105deg,transparent 48%,#bc8c7d 49% 51%,transparent 52%) 33px 59px/25px 45px no-repeat}
+.review-popper{position:absolute;bottom:11%;right:4%;z-index:16;padding:.5rem .65rem;border:1px solid #ad776f;background:#fde9d6;color:#744847;border-radius:6px;transform:rotate(5deg);box-shadow:3px 3px #a6736b50}
+.review-popper:not([hidden])::before{content:'✦ ';color:#c36c54}#reviewConfetti{position:absolute;bottom:18%;right:9%;z-index:18;pointer-events:none}
+#reviewConfetti i{position:absolute;width:7px;height:11px;border-radius:1px;animation:review-burst .95s ease-out both}
+@keyframes review-burst{0%{transform:translate(0,0) rotate(0)}60%{opacity:1;transform:translate(var(--x),var(--y)) rotate(var(--spin))}100%{opacity:0;transform:translate(var(--x),-35px) rotate(var(--spin))}}
+@media(prefers-reduced-motion:reduce){#reviewConfetti i{animation-duration:.45s;transform:translate(var(--x),var(--y));opacity:.8}}
+.review-cake{position:relative;width:min(100%,280px);height:150px;margin:.45rem auto;background:#fff2dd;border:2px dashed #deb6a1;border-radius:8px}
+.review-cake-plate{position:absolute;bottom:22px;left:24%;width:52%;height:13px;background:#b7a4be;border-radius:50%}
+.review-cake i{display:none;position:absolute;font-style:normal}
+.review-cake:not([data-step="0"]) .review-sponge{display:block;left:8%;bottom:8px;width:84%;height:54px;border-radius:14px 14px 9px 9px;background:linear-gradient(#e4a879 0 43%,#fff0ca 43% 54%,#e6ad7c 54%);box-shadow:inset 0 -4px #b9796250}
+.review-cake:is([data-step="2"],[data-step="3"]) .review-icing{display:block;left:8%;bottom:42px;width:84%;height:20px;background:#fff9ec;border-radius:12px 12px 35% 35%}
+.review-cake:is([data-step="2"],[data-step="3"]) .review-berries{display:block;left:24%;bottom:52px;width:52%;color:#c97075;letter-spacing:.1em}
+.review-cake[data-step="3"] .review-candle{display:block;left:48%;bottom:56px;width:7px;height:26px;background:repeating-linear-gradient(-35deg,#f8cf8f 0 4px,#e88884 4px 8px);border-radius:2px}
+.review-candle b{position:absolute;bottom:28px;left:-1px;width:9px;height:14px;border-radius:75% 25% 65% 35%;background:#f3a650;box-shadow:0 0 12px #f3b156}
+.review-cake[hidden],.review-popper[hidden],.sohee-art[hidden]{display:none!important}

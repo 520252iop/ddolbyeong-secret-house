@@ -1,6 +1,6 @@
-'use strict';
-// Trusted local SVG illustrations. The existing menu owns food names, gains and dialogue.
+'use strict';
 const FOOD_ART={
+ birthdayCake:'<path d="M20 57 34 29 73 41l3 22q-24 10-56-6Z" fill="#efafc3" stroke="#b9849a" stroke-width="1.6"/><path d="m23 49 52 9-1-7-49-7z" fill="#fff2cf"/><path d="M20 45 34 26q3-6 10-2l29 13q4 2 3 7l-5 4-8-3-9 1-7-4-7 1-8-3-9 5z" fill="#fff0dc" stroke="#c78ca3" stroke-width="1.4"/><path d="M39 29q-7-6 1-11 9-5 14 3 2 5-6 10Z" fill="#e193ad"/><path d="m45 20-2-5 6 4" fill="none" stroke="#a4ba98" stroke-width="2"/>' ,
  pudding:'<path d="M24 25q24-7 48 0l8 34q-31 12-64 0Z" fill="#f9dfac" stroke="#c5ac94" stroke-width="1.4"/><path d="M24 25q24-7 48 0l2 8q-8 5-14 0-8 8-15 0-11 6-23 0Z" fill="#d6a68e" stroke="#bd9987" stroke-width="1.1"/><path d="M31 37q-3 8-4 16" stroke="#fff1d0" stroke-width="3" stroke-linecap="round"/><ellipse cx="48" cy="23" rx="25" ry="6" fill="#dab09a" stroke="#bd9987" stroke-width="1.1"/><path d="M43 16q-3-10 5-10 10 1 7 11Z" fill="#fff8e8" stroke="#cfbdab" stroke-width="1"/><circle cx="50" cy="8" r="4" fill="#e7a3b0"/>',
  strawberry:'<path d="M23 28q3-17 25-12 21-6 26 12 1 20-20 34-7 5-12 0Q20 46 23 28Z" fill="#efaebb" stroke="#c59ba4" stroke-width="1.4"/><path d="m47 20-15-9 4 13-13-1 14 10 11-7 11 7 13-10-13 1 4-13Z" fill="#c2d7b3" stroke="#a7b99b" stroke-width="1.2"/><path d="m35 38 2 3m13-8 2 3m12 2-1 4m-23 6 2 3m11-4-1 3m-6 5 1 2" stroke="#fff1d5" stroke-width="2.3" stroke-linecap="round"/>',
  riceball:'<path d="M16 55Q29 24 42 13q7-6 13 0 20 22 29 43 2 9-14 10H29q-17-1-13-11Z" fill="#fffaf0" stroke="#c5b7a7" stroke-width="1.4"/><path d="M37 44q12-3 23 0l2 23H35Z" fill="#a9b8a7" stroke="#95a591" stroke-width="1.2"/><path d="m24 48 2-4m8-13 2-3m23-5 3 4m9 16 2 4m-43 7 1 3" stroke="#e6dccb" stroke-width="1.5" stroke-linecap="round"/>'
@@ -22,8 +22,7 @@ function startFeeding(food){
  (reduced?[250,650,1000]:[700,1500,2300]).forEach((ms,i)=>after(ms,()=>{tray.dataset.bites=String(i+1);$('room').classList.add('eat-open');after(260,()=>$('room').classList.remove('eat-open'));}));
  after(reduced?1400:3200,()=>{
   if(session.settled)return;session.settled=true;
-  tray.hidden=true;tray.innerHTML='';$('room').classList.remove('eating','eat-open');feedingSession=null;busy=false;
-  // Single commit after the last bite; interact retains all original clamping, rewards and storage rules.
+  tray.hidden=true;tray.innerHTML='';$('room').classList.remove('eating','eat-open');feedingSession=null;busy=false;
   say(food.line);interact({fullness:food.gain,mood:3,affection:2},'food');setExpression('smug',2200);particles(['✦','♡']);lastActive=Date.now();
  });return true;
 }
