@@ -36,10 +36,8 @@
  bgm.volume = .35;
  let trackIndex = 0;
  let attempted = false;
- const audioPreview = new URLSearchParams(window.location?.search).get('preview') === 'music';
- const musicAvailable = now => audioPreview || (now >= start && now < keepsake);
  function playBackground() {
-  if (!soundtrack.length || document.hidden || !musicAvailable(Date.now())) return;
+  if (!soundtrack.length || document.hidden) return;
   if (!bgm.getAttribute('src')) bgm.src = soundtrack[trackIndex];
   if (typeof pauseRoomMusic === 'function' && (roomMusicPlaying || roomMusicPending)) pauseRoomMusic(false);
   bgm.play().catch(() => { bgmToggle.textContent = '♫ 点一下播放背景音乐'; });
@@ -54,7 +52,7 @@
  });
  bgm.addEventListener('error', () => { bgmToggle.textContent = '♫ 背景音乐暂不可用'; });
  for (const event of ['play','pause']) bgm.addEventListener(event, () => {
-  bgmToggle.textContent = bgm.paused ? '♫ 播放生日背景音乐' : 'Ⅱ 暂停生日背景音乐';
+  bgmToggle.textContent = bgm.paused ? '♫ 播放背景音乐' : 'Ⅱ 暂停背景音乐';
  });
  byId('roomMusicToggle').addEventListener('click', () => { if (soundtrack.length) bgm.pause(); });
  letterOpen.addEventListener('click', () => {
@@ -131,12 +129,10 @@
   const now = Date.now();
   const current = phase(now);
   const birthdayOpen = current === 'party';
-  const active = musicAvailable(now);
   letterOpen.hidden = now < party || now >= keepsake;
   if (letterOpen.hidden && letter.open) letter.close();
-  bgmToggle.hidden = !active || !soundtrack.length;
-  if (active && soundtrack.length && !attempted && !document.hidden) { attempted = true; playBackground(); }
-  if (!active && soundtrack.length && !bgm.paused) bgm.pause();
+  bgmToggle.hidden = !soundtrack.length;
+  if (soundtrack.length && !attempted && !document.hidden) { attempted = true; playBackground(); }
   if (!birthdayOpen && !birthdayButton.hidden) stopBirthdaySong();
   birthdayButton.hidden = !birthdayOpen;
   records.hidden = !birthdayOpen && current !== 'warmup';
