@@ -26,33 +26,39 @@
  const letter = byId('soheeLetter');
  const letterOpen = byId('soheeLetterOpen');
  const bgm = byId('soheeBgm');
- const bgmToggle = byId('soheeBgmToggle');
  const soundtrack = [
   "assets/audio/inside-my-life.mp3",
   "assets/audio/love-on-the-canvas.mp3",
   "assets/audio/made-the-night-magic.mp3",
   "assets/audio/wine-kiss.mp3"
  ];
- bgm.volume = .35;
+ bgm.volume = .09;
  let trackIndex = 0;
  let attempted = false;
+ let resumeOnReturn = false;
+ function stopListeningForGesture() {
+  document.removeEventListener('pointerup', playOnGesture, true);
+  document.removeEventListener('keydown', playOnGesture, true);
+ }
+ function playOnGesture(event) {
+  if (!event.isTrusted) return;
+  stopListeningForGesture();
+  playBackground();
+ }
  function playBackground() {
   if (!soundtrack.length || document.hidden) return;
   if (!bgm.getAttribute('src')) bgm.src = soundtrack[trackIndex];
   if (typeof pauseRoomMusic === 'function' && (roomMusicPlaying || roomMusicPending)) pauseRoomMusic(false);
-  bgm.play().catch(() => { bgmToggle.textContent = '♫ 点一下播放背景音乐'; });
+  bgm.play().then(stopListeningForGesture).catch(error => {
+   if (error.name !== 'NotAllowedError') return;
+   document.addEventListener('pointerup', playOnGesture, true);
+   document.addEventListener('keydown', playOnGesture, true);
+  });
  }
- bgmToggle.addEventListener('click', () => {
-  if (bgm.paused) { stopBirthdaySong(); playBackground(); } else bgm.pause();
- });
  bgm.addEventListener('ended', () => {
   trackIndex = (trackIndex + 1) % soundtrack.length;
   bgm.src = soundtrack[trackIndex];
   playBackground();
- });
- bgm.addEventListener('error', () => { bgmToggle.textContent = '♫ 背景音乐暂不可用'; });
- for (const event of ['play','pause']) bgm.addEventListener(event, () => {
-  bgmToggle.textContent = bgm.paused ? '♫ 播放背景音乐' : 'Ⅱ 暂停背景音乐';
  });
  byId('roomMusicToggle').addEventListener('click', () => { if (soundtrack.length) bgm.pause(); });
  letterOpen.addEventListener('click', () => {
@@ -83,7 +89,14 @@
  records.addEventListener('toggle', () => { if (!records.open) stopBirthdaySong(); });
  dialog.addEventListener('close', stopBirthdaySong);
  document.addEventListener('visibilitychange', () => {
-  if (document.hidden) { stopBirthdaySong(); if (soundtrack.length) bgm.pause(); }
+  if (document.hidden) {
+   resumeOnReturn = !bgm.paused;
+   stopBirthdaySong();
+   bgm.pause();
+  } else if (resumeOnReturn) {
+   resumeOnReturn = false;
+   playBackground();
+  }
  });
 
  const steps = ['挂好手写彩旗', '给蛋糕点一根蜡烛', '绑好礼物丝带'];
@@ -131,7 +144,6 @@
   const birthdayOpen = current === 'party';
   letterOpen.hidden = now < party || now >= keepsake;
   if (letterOpen.hidden && letter.open) letter.close();
-  bgmToggle.hidden = !soundtrack.length;
   if (soundtrack.length && !attempted && !document.hidden) { attempted = true; playBackground(); }
   if (!birthdayOpen && !birthdayButton.hidden) stopBirthdaySong();
   birthdayButton.hidden = !birthdayOpen;
