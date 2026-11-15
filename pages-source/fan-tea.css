@@ -1,0 +1,4 @@
+.fan-tea{margin-top:.8rem;padding:.7rem .85rem;border:1px dashed #cbb2be;border-radius:10px;background:#f5e7e9;color:#684b60}
+.fan-tea h3{margin:0;font-size:1rem}.fan-tea p{margin:.3rem 0 .55rem;line-height:1.55}
+#openFanTea{min-height:44px;padding:.33rem .62rem;background:#fff6e8;color:#785569;border:1px solid #c5a1b2;border-radius:8px;font:inherit;cursor:pointer}
+#fanTeaMailTopic:not([hidden]){padding:.45rem .65rem;background:#f5e7e9;border-radius:7px;color:#674a5c}

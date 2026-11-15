@@ -1,0 +1,12 @@
+#openRoomTheatre{grid-column:1/-1;background:#eadcef;color:#6a4c67}
+#roomTheatre{width:min(91vw,420px);max-height:86vh;overflow:auto;box-sizing:border-box;padding:1rem 1.2rem 1.25rem;background:#fff4e4;color:#654a59;border:2px solid #b797ab;border-radius:16px 8px 16px 8px;text-align:center;box-shadow:5px 5px #946e8e65}
+#roomTheatre::backdrop{background:#49334678}
+#roomTheatre h2{margin:.5rem 0;color:#765472}
+#closeRoomTheatre{display:block;margin-left:auto}
+#theatreArt{display:grid;place-items:center;min-height:90px;font:2.7rem LittleWorldHand,system-ui,sans-serif;color:#8d6ba0;border:1px dashed #b794ba;border-radius:10px;background:#efdff2}
+#roomTheatre[data-prop=cream] #theatreArt{background:#fff1cc;color:#997441}
+#roomTheatre[data-prop=mint] #theatreArt{background:#dff0e4;color:#607c76}
+#theatreOptions{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center}
+#roomTheatre button{min-height:44px;border:1px solid #bd93ae;border-radius:9px;background:#fbebed;color:#66485d;padding:.3rem .55rem}
+#roomTheatre button:focus-visible{outline:2px solid #895784;outline-offset:2px}
+#theatreProgress{color:#866575;font-size:.82rem;margin:.7rem 0 0}

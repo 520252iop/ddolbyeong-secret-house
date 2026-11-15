@@ -1,7 +1,7 @@
 'use strict';
 // Shared room hotspot coordination. No new storage, stats or rewards.
 const ROOM_HOTSPOTS=['bed','starPlush','window','memoryClock','memoryPoster','memoryCollection','roomMemoryPhoto','roomFriendsPhoto','roomPastelPlush','roomMemoryCamera','interiorBirthday','interiorPlayer','roomDiaryBook','friendJewelry','friendDinoLamp','friendDumbbell','friendHeadband','friendStones','roomWallSwitch'];
-const ROOM_DIALOGS=['choiceDialog','wardrobeDialog','miniDialog','diaryDialog','gachaDialog','memoryAlbumDialog','cosmicMailDialog'];
+const ROOM_DIALOGS=['choiceDialog','wardrobeDialog','miniDialog','diaryDialog','gachaDialog','memoryAlbumDialog','cosmicMailDialog','roomTheatre'];
 let roomHotspotLast=-Infinity,roomHotspotFocus=null;
 function roomHasDialog(){return ROOM_DIALOGS.some(id=>$(id).open);}
 function roomHotspotAllowed(id){if(!ROOM_HOTSPOTS.includes(id))return true;if(document.hidden||roomHasDialog()||busy||drag)return false;if(sleeping&&['starPlush','window','memoryClock','memoryPoster','roomPastelPlush','interiorPlayer'].includes(id))return false;const now=Date.now();if(now-roomHotspotLast<300)return false;roomHotspotLast=now;roomHotspotFocus=$(id);lastActive=now;if(typeof clearPersonality==='function')clearPersonality();return true;}

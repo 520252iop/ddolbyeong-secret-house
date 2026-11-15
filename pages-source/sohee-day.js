@@ -26,6 +26,42 @@
  const letter = byId('soheeLetter');
  const letterOpen = byId('soheeLetterOpen');
  const bgm = byId('soheeBgm');
+ let backgroundBeforeSong = false;
+ const bgmToggle = byId('backgroundMusicToggle');
+ const backgroundPreferenceKey = 'sohee-little-world-background-stopped';
+ let backgroundStopped = false;
+ try { backgroundStopped = ![null,'playing'].includes(localStorage.getItem(backgroundPreferenceKey)); } catch {}
+ function stopBackground() {
+  backgroundStopped = true;
+  stopListeningForGesture();
+  resumeOnReturn = false;
+  backgroundBeforeSong = false;
+  backgroundBeforeSong = !bgm.paused || backgroundBeforeSong;
+  bgm.pause();
+  if (typeof pauseRoomMusic === 'function' && (roomMusicPlaying || roomMusicPending)) pauseRoomMusic(false);
+  bgmToggle.textContent = '继续播放背景音乐';
+ }
+ function resumeBackground() {
+  backgroundStopped = false;
+  bgmToggle.textContent = '停止背景音乐';
+  if (birthdayAudio.paused) playBackground();
+  else backgroundBeforeSong = true;
+ }
+ if (backgroundStopped) bgmToggle.textContent = '继续播放背景音乐';
+ bgmToggle.addEventListener('click', () => {
+  if (backgroundStopped) {
+   try { localStorage.setItem(backgroundPreferenceKey,'playing'); } catch {}
+   resumeBackground();
+   return;
+  }
+  stopBackground();
+  try { localStorage.setItem(backgroundPreferenceKey,String(Date.now())+'-'+Math.random()); } catch {}
+ });
+ window.addEventListener('storage',event => {
+  if (event.key !== backgroundPreferenceKey) return;
+  if (event.newValue !== null && event.newValue !== 'playing') stopBackground();
+  else resumeBackground();
+ });
  bgm.volume = .09;
  let attempted = false;
  let resumeOnReturn = false;
@@ -39,10 +75,13 @@
   playBackground();
  }
  function playBackground() {
-  if (document.hidden) return;
+  if (document.hidden || backgroundStopped) return;
   if (typeof pauseRoomMusic === 'function' && (roomMusicPlaying || roomMusicPending)) pauseRoomMusic(false);
-  bgm.play().then(stopListeningForGesture).catch(error => {
-   if (error.name !== 'NotAllowedError') return;
+  bgm.play().then(() => {
+   stopListeningForGesture();
+   if (backgroundStopped) bgm.pause();
+  }).catch(error => {
+   if (error.name !== 'NotAllowedError' || backgroundStopped) return;
    document.addEventListener('pointerup', playOnGesture, true);
    document.addEventListener('keydown', playOnGesture, true);
   });
@@ -68,15 +107,23 @@
   bgm.pause();
   if (typeof pauseRoomMusic === 'function') pauseRoomMusic(false);
   songStatus.hidden = true;
-  birthdayAudio.play().catch(showSongError);
+  birthdayAudio.play().catch(()=>{showSongError();restoreBackground();});
  });
  for (const event of ['play', 'pause', 'ended']) birthdayAudio.addEventListener(event, syncBirthdayButton);
  birthdayAudio.addEventListener('error', showSongError);
+ function restoreBackground() {
+  if (!backgroundBeforeSong || document.hidden) return;
+  backgroundBeforeSong=false;
+  playBackground();
+ }
+ birthdayAudio.addEventListener('pause',restoreBackground);
+ birthdayAudio.addEventListener('ended',restoreBackground);
  records.addEventListener('toggle', () => { if (!records.open) stopBirthdaySong(); });
  dialog.addEventListener('close', stopBirthdaySong);
  document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
-   resumeOnReturn = !bgm.paused;
+   resumeOnReturn = !bgm.paused || backgroundBeforeSong;
+   backgroundBeforeSong = false;
    stopBirthdaySong();
    bgm.pause();
   } else if (resumeOnReturn) {

@@ -1,0 +1,46 @@
+
+.daily-room-surfaces{display:none;position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#room:not(.party-cake-room):not(.sohee-party) .daily-room-surfaces{display:block}
+#room:not(.party-cake-room):not(.sohee-party){--daily-paper-light:#fff7e6;--daily-paper-deep:#f0dfd7;--daily-panel:#e8d5c8;--daily-panel-shade:#ccb3ad;--daily-trim:#fff0db;--daily-board-shade:#ba9c835a;--daily-rug:#ead1dd;--daily-rug-edge:#ac839b}
+#room:not(.party-cake-room):not(.sohee-party)[data-room-period=morning]{--daily-paper-light:#fff6df;--daily-paper-deep:#eadfd2;--daily-panel:#ecdbca}
+#room:not(.party-cake-room):not(.sohee-party)[data-room-period=evening]{--daily-paper-light:#fff0d9;--daily-paper-deep:#efdbdf;--daily-panel:#ead0cb;--daily-board-shade:#a15f7940}
+#room:not(.party-cake-room):not(.sohee-party):is([data-room-period=night],.sleeping){--daily-paper-light:#eee7ed;--daily-paper-deep:#dcd2e4;--daily-panel:#d9cad8;--daily-panel-shade:#b5a0ba;--daily-trim:#eadde4;--daily-board-shade:#7e69996a;--daily-rug:#e3ccdf;--daily-rug-edge:#ad8ba9}
+.daily-paper,.daily-wood-panels,.daily-skirting,.daily-floor{position:absolute;left:0;width:100%}
+.daily-paper{top:0;height:66%;background:radial-gradient(ellipse at 79% 21%,var(--daily-paper-light),transparent 42%),repeating-linear-gradient(90deg,#fff5ed44 0 17px,transparent 17px 39px),linear-gradient(180deg,var(--daily-paper-light),var(--daily-paper-deep))}
+.daily-paper::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,#bd9aa752 0 1px,transparent 1.4px) 0 0/46px 46px,radial-gradient(circle,#fffaf2b0 0 1px,transparent 1.4px) 23px 23px/46px 46px;mask-image:linear-gradient(#000,transparent 92%)}
+.daily-wood-panels{top:54%;height:13%;border-top:4px solid var(--daily-trim);box-shadow:inset 0 2px #ad839445;background:repeating-linear-gradient(90deg,transparent 0 56px,#96757f37 57px,#fff3e369 58px 60px),linear-gradient(var(--daily-panel),var(--daily-panel-shade))}
+.daily-wood-panels::after{content:"";position:absolute;inset:8px 0 5px;background:repeating-linear-gradient(90deg,transparent 0 7px,#fff6ec54 7px 8px,#fff7e82e 8px 49px,#b2929955 50px 51px,transparent 51px 60px)}
+.daily-skirting{z-index:1;top:65%;height:3%;background:linear-gradient(var(--daily-trim) 0 35%,var(--daily-panel-shade) 36% 48%,var(--daily-panel) 50% 78%,#a8828262 79%);box-shadow:0 2px 3px #88636945}
+.daily-floor{top:67%;height:33%;background:#ead5b8}
+.daily-floor path{stroke:#a77d694e;stroke-width:.9}
+.daily-room-surfaces::after{content:"";position:absolute;inset:67% 0 0;background:linear-gradient(var(--daily-board-shade),transparent 72%);z-index:1;pointer-events:none}
+.daily-bed-shadow,.daily-desk-shadow{position:absolute;z-index:2;bottom:11%;height:6%;border-radius:50%;background:#8d69543d;filter:blur(7px)}
+.daily-bed-shadow{left:4%;width:28%}.daily-desk-shadow{right:9%;width:24%;bottom:7%}
+#room:not(.party-cake-room):not(.sohee-party) .rug{z-index:1;border:4px solid #f9ecdc;outline:1px solid var(--daily-rug-edge);box-shadow:0 5px 0 #8d716945,inset 0 0 0 2px #f7e2e8;background:radial-gradient(ellipse at center,transparent 59%,#f6e6dab0 60% 62%,transparent 63%),repeating-linear-gradient(7deg,transparent 0 3px,#fff9ea44 4px 5px),var(--daily-rug)}
+#room:not(.party-cake-room):not(.sohee-party) .right-keepsake-board{background-color:#e8d8b8;border-color:#bba086;box-shadow:3px 4px #a0806c3a,inset 0 0 0 4px #f8e9d077}
+#room:not(.party-cake-room):not(.sohee-party) .right-storage-cabinet{background:linear-gradient(90deg,#ddc3a2 0 6px,#f4e4ca 7px calc(100% - 7px),#dbc0a2 calc(100% - 6px));box-shadow:5px 2px #ddc3a4,7px 8px 6px #97775b36}
+#room:not(.party-cake-room):not(.sohee-party) #bed{box-shadow:2px 4px 0 #977b6833,0 8px 11px #9c6e7750}
+@media(max-width:650px){.daily-bed-shadow{left:2%;width:30%}.daily-desk-shadow{right:3%;width:24%;bottom:7%}.daily-paper::after{background-size:34px 34px}}
+
+#room:not(.party-cake-room):not(.sohee-party) :is(#roomMemoryPhoto,#roomFriendsPhoto){overflow:visible;box-shadow:2px 4px 5px #805e6c2b}
+#room:not(.party-cake-room):not(.sohee-party) :is(#roomMemoryPhoto,#roomFriendsPhoto)::after{content:"";position:absolute;top:-5px;left:27%;width:49%;height:10px;background:repeating-linear-gradient(48deg,#fbecd09c 0 5px,#f9dbc9a6 5px 7px);border:1px solid #e9cdb989;transform:rotate(-8deg);pointer-events:none}
+#room:not(.party-cake-room):not(.sohee-party) #roomFriendsPhoto::after{background:repeating-linear-gradient(48deg,#e7d9efa8 0 5px,#e8c8e1b0 5px 7px);transform:rotate(6deg)}
+.room-background-control{display:flex;justify-content:flex-start;margin:.4rem 0 .15rem}
+#backgroundMusicToggle{min-height:44px;padding:.3rem .65rem;border:1px solid #ceb5ad;border-radius:9px;background:#fbf0e7;color:#735460;font:inherit;font-size:.85rem;cursor:pointer}
+#backgroundMusicToggle:focus-visible{outline:2px solid #9a6d85;outline-offset:2px}
+
+.room-background-control{margin:4px 26px 0;color:#8b776c;font-size:10px;line-height:1.8}
+#backgroundMusicToggle{min-height:34px;padding:2px 9px;border:1px dashed #dac5b8;border-radius:8px;background:#fffaf0;color:inherit;font:inherit}
+#backgroundMusicToggle:hover{color:#755461;background:#fbebe2}
+#room:not(.party-cake-room):not(.sohee-party) .daily-wood-panels{background:repeating-linear-gradient(90deg,transparent 0 56px,#96757f20 57px,#fff3e349 58px 60px),linear-gradient(color-mix(in srgb,var(--daily-panel),#fff5ed 38%),color-mix(in srgb,var(--daily-panel-shade),#fff5ed 55%));box-shadow:inset 0 2px #ad839430}
+#room:not(.party-cake-room):not(.sohee-party) .daily-wood-panels::after{opacity:.58}
+@media(max-width:650px){.room-background-control{margin-left:15px;margin-right:15px}}
+
+#dailyRoomMic{position:absolute;z-index:5;right:calc(7% + 222px);top:157px;width:44px;height:44px;display:grid;place-items:center;padding:0;border:0;background:none;cursor:pointer;transform:rotate(-5deg)}
+#dailyRoomMic svg{width:100%;height:100%;filter:drop-shadow(1px 2px 0 #8e667036);transition:transform .16s ease}
+#dailyRoomMic:hover svg,#dailyRoomMic:focus-visible svg{transform:translateY(-3px) rotate(4deg)}
+#dailyRoomMic:focus-visible{outline:2px dashed #916a97;outline-offset:1px;border-radius:7px}
+#room:is(.party-cake-room,.sohee-party) #dailyRoomMic{display:none}
+@media(min-width:651px) and (max-width:800px){#dailyRoomMic{right:calc(7% + 85px);top:159px}}
+@media(max-width:650px){#dailyRoomMic{right:calc(4% + 88px);top:211px}}
+@media(prefers-reduced-motion:reduce){#dailyRoomMic svg{transition:none}}
